@@ -1,0 +1,12 @@
+export { HeroSectionAir } from "./HeroSectionAir";
+export { PageLoadAnimationAir } from "./PageLoadAnimationAir";
+export { LaNetaSectionAir } from "./LaNetaSectionAir";
+export { WhyContactedSectionAir } from "./WhyContactedSectionAir";
+export { AirOpportunitySection } from "./AirOpportunitySection";
+export { TranslationDemoSection } from "./TranslationDemoSection";
+export { GrowthSectionAir } from "./GrowthSectionAir";
+export { HowItWorksAir } from "./HowItWorksAir";
+export { FAQSectionAir } from "./FAQSectionAir";
+export { HeaderAir } from "./HeaderAir";
+export { FooterAir } from "./FooterAir";
+export { ContactFormAir } from "./ContactFormAir";
