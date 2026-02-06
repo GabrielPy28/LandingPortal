@@ -132,7 +132,7 @@ export function HeroSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-2"
             >
-              Apply Now
+              Try it
               <Play className="size-5" />
             </Link>
           </Button>

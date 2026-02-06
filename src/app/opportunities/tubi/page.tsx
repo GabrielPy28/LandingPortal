@@ -1,60 +1,41 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { Construction, ArrowLeft } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Tubi | La Neta - Coming Soon",
-  description: "The Tubi opportunity with La Neta will be available soon.",
-  openGraph: {
-    title: "Tubi | La Neta - Coming Soon",
-    description: "The Tubi opportunity with La Neta will be available soon.",
-    url: "/opportunities/tubi",
-    type: "website",
-    siteName: "La Neta",
-    images: [
-      {
-        url: "/images/Banner.jpg",
-        width: 1200,
-        height: 630,
-        alt: "La Neta - Tubi Opportunity Coming Soon",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Tubi | La Neta - Coming Soon",
-    description: "The Tubi opportunity with La Neta will be available soon.",
-    images: ["/images/Banner.jpg"],
-  },
-};
+import { useState } from "react";
+import {
+  PageLoadAnimationTubi,
+  HeaderTubi,
+  HeroSectionTubi,
+  LaNetaSectionTubi,
+  TubiOpportunitySection,
+  WhyTubiSection,
+  CoverageCreatorverseSection,
+  TestimonialSectionTubi,
+  ScrollRevealCardsSection,
+  FAQSectionTubi,
+  FooterTubi,
+  TubiFormModal,
+} from "@/components/landing/tubi";
 
-export default function TubiComingSoon() {
+export default function TubiPage() {
+  const [showFormModal, setShowFormModal] = useState(false);
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-meta-dark px-6">
-      <div className="relative max-w-lg text-center">
-        <div className="mb-8 flex justify-center">
-          <div className="relative">
-            <div className="absolute inset-0 animate-ping rounded-full bg-orange-500/20" />
-            <div className="relative flex size-32 items-center justify-center rounded-full bg-orange-500/20">
-              <Construction className="size-16 text-orange-400" />
-            </div>
-          </div>
-        </div>
-        <h1 className="mb-4 text-4xl font-bold text-white sm:text-5xl">
-          Under construction...
-        </h1>
-        <p className="mb-8 text-lg text-slate-200">
-          The <strong className="text-white">Tubi</strong> opportunity with La
-          Neta will be available soon. Stay tuned!
-        </p>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 rounded-xl bg-meta-purple px-6 py-3 font-semibold text-white transition-colors hover:bg-meta-purple/90"
-        >
-          <ArrowLeft className="size-5" />
-          Back to opportunities
-        </Link>
+    <PageLoadAnimationTubi>
+      <div className="relative min-h-screen w-full min-w-0 overflow-x-hidden bg-tubi-dark">
+        <HeaderTubi />
+        <main className="w-full min-w-0 overflow-x-hidden">
+          <HeroSectionTubi onTryIt={() => setShowFormModal(true)} />
+          <LaNetaSectionTubi />
+          <TubiOpportunitySection />
+          <WhyTubiSection />
+          <CoverageCreatorverseSection />
+          <TestimonialSectionTubi />
+          <ScrollRevealCardsSection />
+          <FAQSectionTubi onTryIt={() => setShowFormModal(true)} />
+          <FooterTubi />
+        </main>
+        <TubiFormModal isOpen={showFormModal} onClose={() => setShowFormModal(false)} />
       </div>
-    </div>
+    </PageLoadAnimationTubi>
   );
 }

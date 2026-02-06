@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
 import { Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import { submitToGoogleForm } from "@/lib/googleForm";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,32 +85,13 @@ export function ContactFormAir() {
     if (status !== "idle") setStatus("idle");
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
     setErrorMessage("");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to send message");
-      }
-
-      setStatus("success");
-      setFormData(initialFormData);
-    } catch (err) {
-      setStatus("error");
-      setErrorMessage(
-        err instanceof Error ? err.message : "Something went wrong. Please try again."
-      );
-    }
+    submitToGoogleForm(formData);
+    setStatus("success");
+    setFormData(initialFormData);
   };
 
   const inputClass =

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { OpportunitiesNav } from "@/components/landing";
@@ -60,7 +61,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} min-w-0 overflow-x-hidden antialiased`}
       >
         {children}
-        <OpportunitiesNav />
+        <Suspense fallback={null}>
+          <OpportunitiesNav />
+        </Suspense>
       </body>
     </html>
   );

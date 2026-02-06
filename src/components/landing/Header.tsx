@@ -37,7 +37,7 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4 pl-4 pr-6 sm:px-6">
-        <Link href="#" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src="/images/logo.png"
             alt="La Neta"
@@ -67,7 +67,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Apply Now
+              Try it
             </Link>
           </Button>
         </nav>
@@ -103,7 +103,7 @@ export function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Apply Now
+                Try it
               </Link>
             </Button>
           </nav>

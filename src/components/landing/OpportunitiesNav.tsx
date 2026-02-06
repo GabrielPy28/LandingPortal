@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import gsap from "gsap";
 import { FaMeta } from "react-icons/fa6";
 import { FaPinterestP } from "react-icons/fa";
@@ -14,7 +14,7 @@ const OPPORTUNITIES = [
   {
     id: "meta",
     name: "Meta Breakthrough Bonus",
-    href: "/",
+    href: "/opportunities/meta",
     icon: "meta",
     color: "from-meta-purple to-meta-pink",
     bgColor: "bg-meta-purple/10",
@@ -108,11 +108,16 @@ export function OpportunitiesNav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(true);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const menuRef = useRef<HTMLDivElement>(null);
 
+  const showNav = searchParams.get("show") === "all";
+  if (!showNav) return null;
+
   const activeOpportunity =
-    OPPORTUNITIES.find((opp) =>
-      opp.href === "/" ? pathname === "/" : pathname.startsWith(opp.href)
+    OPPORTUNITIES.find(
+      (opp) =>
+        pathname === opp.href || pathname.startsWith(opp.href + "/")
     ) ?? OPPORTUNITIES[0];
 
   useEffect(() => {
@@ -158,10 +163,8 @@ export function OpportunitiesNav() {
     }
   }, [isOpen, isMobile]);
 
-  const isActive = (opp: (typeof OPPORTUNITIES)[0]) => {
-    if (opp.href === "/") return pathname === "/";
-    return pathname.startsWith(opp.href);
-  };
+  const isActive = (opp: (typeof OPPORTUNITIES)[0]) =>
+    pathname === opp.href || pathname.startsWith(opp.href + "/");
 
   const collapsedWidth = isMobile ? 48 : 72;
 
@@ -262,10 +265,13 @@ export function OpportunitiesNav() {
                 : "border-l-4 border-transparent hover:bg-white/5"
             }`;
 
+            const hrefWithShow =
+              opp.href + (opp.href.includes("?") ? "&" : "?") + "show=all";
+
             return (
               <Link
                 key={opp.id}
-                href={opp.href}
+                href={hrefWithShow}
                 className={className}
                 data-opp-item
                 onClick={() => isMobile && setIsOpen(false)}

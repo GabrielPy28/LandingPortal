@@ -1,0 +1,12 @@
+export { PageLoadAnimationTubi } from "./PageLoadAnimationTubi";
+export { HeaderTubi } from "./HeaderTubi";
+export { HeroSectionTubi } from "./HeroSectionTubi";
+export { LaNetaSectionTubi } from "./LaNetaSectionTubi";
+export { TubiOpportunitySection } from "./TubiOpportunitySection";
+export { WhyTubiSection } from "./WhyTubiSection";
+export { CoverageCreatorverseSection } from "./CoverageCreatorverseSection";
+export { ScrollRevealCardsSection } from "./ScrollRevealCardsSection";
+export { TestimonialSectionTubi } from "./TestimonialSectionTubi";
+export { FAQSectionTubi } from "./FAQSectionTubi";
+export { FooterTubi } from "./FooterTubi";
+export { TubiFormModal } from "./TubiFormModal";

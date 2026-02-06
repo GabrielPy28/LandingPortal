@@ -50,14 +50,14 @@ export default function AirMediaMsnPage() {
         <HeaderAir />
         <main className="w-full min-w-0 overflow-x-hidden">
           <HeroSectionAir />
-          <LaNetaSectionAir />
-          <WhyContactedSectionAir />
           <AirOpportunitySection />
           <TranslationDemoSection />
           <GrowthSectionAir />
           <HowItWorksAir />
           <FAQSectionAir />
           <ContactFormAir />
+          <LaNetaSectionAir />
+          <WhyContactedSectionAir />
           <FooterAir />
         </main>
       </div>

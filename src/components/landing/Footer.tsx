@@ -11,7 +11,7 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col gap-4">
             <Image
-              src="/images/logo.png"
+              src="/images/new_logo.png"
               alt="La Neta"
               width={60}
               height={60}

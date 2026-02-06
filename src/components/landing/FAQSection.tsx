@@ -297,7 +297,7 @@ export function FAQSection() {
               className="inline-flex items-center gap-2"
             >
               <Sparkles className="size-5" />
-              Apply Now
+              Try it
             </Link>
           </Button>
         </div>

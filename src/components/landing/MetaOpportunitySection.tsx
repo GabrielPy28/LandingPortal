@@ -96,7 +96,7 @@ const KEY_METRICS = [
   { value: "$5,000", label: "Max bonus (first 90 days)", sub: "Performance-driven" },
   { value: "24-48h", label: "Response time", sub: "Quick decision" },
   { value: "4", label: "Content types", sub: "Reels, videos, photos, text" },
-  { value: "2025-26", label: "Program active", sub: "Apply now" },
+  { value: "2025-26", label: "Program active", sub: "Try it" },
 ];
 
 const ELIGIBILITY = [

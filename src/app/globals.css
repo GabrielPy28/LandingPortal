@@ -16,6 +16,15 @@
   --color-air-darker: var(--air-darker);
   --color-laneta-purple: var(--laneta-purple);
   --color-laneta-blue: var(--laneta-blue);
+  /* Tubi + La Neta (opportunities/tubi) */
+  --color-tubi-dark: var(--tubi-dark);
+  --color-tubi-yellow: var(--tubi-yellow);
+  --color-tubi-purple: var(--tubi-purple);
+  --color-laneta-purple-tubi: var(--laneta-purple);
+  --color-laneta-blue-tubi: var(--laneta-blue);
+  --color-laneta-pink: var(--laneta-pink);
+  --color-laneta-slate: var(--laneta-slate);
+  --color-laneta-bg: var(--laneta-bg);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -73,6 +82,13 @@
   --air-darker: #030712;
   --laneta-purple: #6641ed;
   --laneta-blue: #79bcf7;
+  /* Tubi x La Neta */
+  --tubi-dark: #0A0019;
+  --tubi-yellow: #F7F590;
+  --tubi-purple: #45009D;
+  --laneta-pink: #ff47ac;
+  --laneta-slate: #0f172a;
+  --laneta-bg: #F8FAFC;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
