@@ -14,8 +14,6 @@ interface FormData {
   email: string;
   phone: string;
   mainAccountUrl: string;
-  subject: string;
-  message: string;
 }
 
 const initialFormData: FormData = {
@@ -23,8 +21,6 @@ const initialFormData: FormData = {
   email: "",
   phone: "",
   mainAccountUrl: "",
-  subject: "",
-  message: "",
 };
 
 export function ContactForm() {
@@ -90,6 +86,16 @@ export function ContactForm() {
     setStatus("success");
     setFormData(initialFormData);
   };
+
+  useEffect(() => {
+    if (status === "success") {
+      const t = setTimeout(() => {
+        setStatus("idle");
+        setFormData(initialFormData);
+      }, 1800);
+      return () => clearTimeout(t);
+    }
+  }, [status]);
 
   const inputClass =
     "w-full rounded-lg border border-meta-purple/30 bg-white px-4 py-3 text-meta-dark placeholder:text-slate-400 focus:border-meta-purple focus:outline-none focus:ring-2 focus:ring-meta-purple/20 transition-colors";
@@ -212,44 +218,6 @@ export function ContactForm() {
               </p>
             </div>
 
-            <div>
-              <label
-                htmlFor="subject"
-                className="mb-2 block text-sm font-semibold text-meta-dark"
-              >
-                Subject <span className="text-meta-pink">*</span>
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                required
-                placeholder="Question about Meta Breakthrough Bonus Program"
-                className={inputClass}
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="message"
-                className="mb-2 block text-sm font-semibold text-meta-dark"
-              >
-                Message <span className="text-meta-pink">*</span>
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                placeholder="Write your question or message here..."
-                className={`${inputClass} resize-y min-h-[120px]`}
-              />
-            </div>
-
             {status === "error" && (
               <div className="flex items-center gap-2 rounded-lg bg-red-50 p-4 text-red-700">
                 <AlertCircle className="size-5 shrink-0" />
@@ -270,7 +238,7 @@ export function ContactForm() {
               type="submit"
               disabled={status === "loading"}
               size="lg"
-              className="w-full bg-meta-purple py-6 text-lg font-semibold hover:bg-meta-purple/90 disabled:opacity-70"
+              className="cursor-pointer w-full bg-meta-purple py-6 text-lg font-semibold hover:bg-meta-purple/90 disabled:opacity-70"
             >
               {status === "loading" ? (
                 <>
@@ -280,7 +248,7 @@ export function ContactForm() {
               ) : (
                 <>
                   <Send className="mr-2 size-5" />
-                  Send Message
+                  Apply
                 </>
               )}
             </Button>

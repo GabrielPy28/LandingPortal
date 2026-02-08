@@ -27,8 +27,8 @@ export interface GoogleFormPayload {
   email: string;
   phone: string;
   mainAccountUrl: string;
-  subject: string;
-  message: string;
+  subject?: string;
+  message?: string;
 }
 
 const IFRAME_ID = "laneta-google-form-iframe";
@@ -63,8 +63,8 @@ export function submitToGoogleForm(data: GoogleFormPayload): void {
     [GOOGLE_FORM_ENTRIES.email, data.email],
     [GOOGLE_FORM_ENTRIES.phone, data.phone],
     [GOOGLE_FORM_ENTRIES.mainAccountUrl, data.mainAccountUrl],
-    [GOOGLE_FORM_ENTRIES.subject, data.subject],
-    [GOOGLE_FORM_ENTRIES.message, data.message],
+    [GOOGLE_FORM_ENTRIES.subject, data.subject ?? ""],
+    [GOOGLE_FORM_ENTRIES.message, data.message ?? ""],
   ];
 
   entries.forEach(([entryId, value]) => {

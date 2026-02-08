@@ -10,7 +10,6 @@ const NAV_LINKS = [
   { href: "#opportunity", label: "Opportunity" },
   { href: "#why-tubi", label: "Why Tubi" },
   { href: "#coverage", label: "Coverage" },
-  { href: "#testimonial", label: "Testimonial" },
   { href: "#how-it-works", label: "Our Values" },
   { href: "#faq", label: "FAQ" },
 ];
@@ -33,7 +32,7 @@ export function HeaderTubi() {
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4 pl-4 pr-6 sm:px-6">
         <Link href="#" className="flex items-center gap-2">
-          <Image src="/images/logo.png" alt="La Neta" width={40} height={40} />
+          <Image src="/images/new_logo.png" alt="La Neta" width={40} height={40} />
           <span className="font-bold text-tubi-yellow">La Neta</span>
         </Link>
 
@@ -42,7 +41,7 @@ export function HeaderTubi() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-tubi-yellow/90 transition-colors hover:text-tubi-yellow"
+              className="text-sm font-medium text-tubi-yellow/90 transition-colors hover:text-white"
             >
               {link.label}
             </a>
@@ -65,7 +64,7 @@ export function HeaderTubi() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-tubi-yellow/90 hover:text-tubi-yellow"
+                className="text-tubi-yellow/90 hover:text-white"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}

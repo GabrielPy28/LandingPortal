@@ -9,7 +9,6 @@ import {
   TubiOpportunitySection,
   WhyTubiSection,
   CoverageCreatorverseSection,
-  TestimonialSectionTubi,
   ScrollRevealCardsSection,
   FAQSectionTubi,
   FooterTubi,
@@ -21,7 +20,7 @@ export default function TubiPage() {
 
   return (
     <PageLoadAnimationTubi>
-      <div className="relative min-h-screen w-full min-w-0 overflow-x-hidden bg-tubi-dark">
+      <div className="relative min-h-screen w-full min-w-0 overflow-x-hidden bg-tubi-purple">
         <HeaderTubi />
         <main className="w-full min-w-0 overflow-x-hidden">
           <HeroSectionTubi onTryIt={() => setShowFormModal(true)} />
@@ -29,7 +28,6 @@ export default function TubiPage() {
           <TubiOpportunitySection />
           <WhyTubiSection />
           <CoverageCreatorverseSection />
-          <TestimonialSectionTubi />
           <ScrollRevealCardsSection />
           <FAQSectionTubi onTryIt={() => setShowFormModal(true)} />
           <FooterTubi />

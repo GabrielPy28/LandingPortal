@@ -100,7 +100,7 @@ export function FooterTubi() {
                 href="https://www.facebook.com/LaNetaSiempre"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-lg bg-tubi-purple/50 p-2 text-tubi-yellow transition-colors hover:bg-tubi-purple"
+                className="rounded-lg bg-tubi-purple/50 p-2 text-tubi-yellow transition-colors hover:bg-white/20 hover:text-tubi-dark"
                 aria-label="Facebook"
               >
                 <Facebook className="size-5" />
@@ -109,7 +109,7 @@ export function FooterTubi() {
                 href="https://www.instagram.com/lanetasiempre/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-lg bg-tubi-purple/50 p-2 text-tubi-yellow transition-colors hover:bg-tubi-purple"
+                className="rounded-lg bg-tubi-purple/50 p-2 text-tubi-yellow transition-colors hover:bg-white/20 hover:text-tubi-dark"
                 aria-label="Instagram"
               >
                 <Instagram className="size-5" />
@@ -118,7 +118,7 @@ export function FooterTubi() {
                 href="https://www.linkedin.com/showcase/lanetasiempre"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-lg bg-tubi-purple/50 p-2 text-tubi-yellow transition-colors hover:bg-tubi-purple"
+                className="rounded-lg bg-tubi-purple/50 p-2 text-tubi-yellow transition-colors hover:bg-white/20 hover:text-tubi-dark"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="size-5" />

@@ -106,7 +106,7 @@ export function HeroSectionTubi({ onTryIt }: HeroSectionTubiProps) {
           <Button
             size="lg"
             onClick={onTryIt}
-            className="bg-tubi-yellow px-8 py-6 text-lg font-semibold text-tubi-dark hover:bg-tubi-yellow/90"
+            className="cursor-pointer bg-tubi-yellow px-8 py-6 text-lg font-semibold text-tubi-dark hover:bg-tubi-dark hover:text-tubi-yellow"
           >
             Try it
           </Button>
@@ -114,7 +114,7 @@ export function HeroSectionTubi({ onTryIt }: HeroSectionTubiProps) {
             asChild
             variant="outline"
             size="lg"
-            className="border-tubi-yellow/50 bg-tubi-yellow/5 px-8 py-6 text-lg text-tubi-yellow hover:bg-tubi-yellow/10"
+            className="border-tubi-yellow/50 bg-tubi-yellow/5 px-8 py-6 text-lg text-tubi-yellow hover:bg-white/15 hover:text-white"
           >
             <a href="#opportunity">See the opportunity</a>
           </Button>

@@ -11,8 +11,6 @@ interface FormData {
   email: string;
   phone: string;
   mainAccountUrl: string;
-  subject: string;
-  message: string;
 }
 
 const initialFormData: FormData = {
@@ -20,8 +18,6 @@ const initialFormData: FormData = {
   email: "",
   phone: "",
   mainAccountUrl: "",
-  subject: "Tubi distribution opportunity - La Neta",
-  message: "",
 };
 
 interface TubiFormModalProps {
@@ -52,6 +48,13 @@ export function TubiFormModal({ isOpen, onClose }: TubiFormModalProps) {
     setStatus("success");
     setFormData(initialFormData);
   };
+
+  useEffect(() => {
+    if (status === "success" && isOpen) {
+      const t = setTimeout(() => onClose(), 1600);
+      return () => clearTimeout(t);
+    }
+  }, [status, isOpen, onClose]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -134,7 +137,7 @@ export function TubiFormModal({ isOpen, onClose }: TubiFormModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-tubi-yellow/80 transition-colors hover:bg-tubi-yellow/10 hover:text-tubi-yellow"
+            className="rounded-lg p-2 text-tubi-yellow/80 transition-colors hover:bg-white/15 hover:text-white"
             aria-label="Close modal"
           >
             <X className="size-5" />
@@ -202,35 +205,6 @@ export function TubiFormModal({ isOpen, onClose }: TubiFormModalProps) {
               className={inputClass}
             />
           </div>
-          <div>
-            <label htmlFor="tubi-subject" className="mb-2 block text-base font-semibold text-tubi-yellow">
-              Subject <span className="text-laneta-pink">*</span>
-            </label>
-            <input
-              type="text"
-              id="tubi-subject"
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              required
-              className={inputClass}
-            />
-          </div>
-          <div>
-            <label htmlFor="tubi-message" className="mb-2 block text-base font-semibold text-tubi-yellow">
-              Message <span className="text-laneta-pink">*</span>
-            </label>
-            <textarea
-              id="tubi-message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              rows={4}
-              placeholder="Tell us about your channel and content..."
-              className={`${inputClass} min-h-[100px] resize-y`}
-            />
-          </div>
 
           {status === "error" && (
             <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-950/50 p-4 text-base text-red-200">
@@ -248,7 +222,7 @@ export function TubiFormModal({ isOpen, onClose }: TubiFormModalProps) {
           <Button
             type="submit"
             disabled={status === "loading"}
-            className="w-full bg-tubi-purple py-6 text-lg font-semibold text-tubi-yellow hover:bg-tubi-purple/90 disabled:opacity-70"
+            className="cursor-pointer w-full bg-tubi-purple py-6 text-lg font-semibold text-tubi-yellow hover:bg-tubi-dark hover:text-tubi-yellow disabled:opacity-70"
           >
             {status === "loading" ? (
               <>
@@ -258,7 +232,7 @@ export function TubiFormModal({ isOpen, onClose }: TubiFormModalProps) {
             ) : (
               <>
                 <Send className="mr-2 size-5" />
-                Send
+                Apply
               </>
             )}
           </Button>

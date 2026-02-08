@@ -90,7 +90,7 @@ export function FAQSectionTubi({ onTryIt }: FAQSectionTubiProps) {
                 value={`tubi-faq-${i}`}
                 className="overflow-hidden rounded-xl border border-tubi-yellow/20 bg-tubi-purple/10 px-4 transition-colors hover:border-tubi-yellow/30 data-[state=open]:border-tubi-yellow/40"
               >
-                <AccordionTrigger className="py-5 text-left text-base font-medium text-tubi-yellow hover:no-underline hover:text-tubi-yellow/95 md:text-lg">
+                <AccordionTrigger className="py-5 text-left text-base font-medium text-tubi-yellow hover:no-underline hover:text-white md:text-lg">
                   {item.q}
                 </AccordionTrigger>
                 <AccordionContent className="pb-5 text-base text-tubi-yellow/90 md:text-lg">
@@ -106,7 +106,7 @@ export function FAQSectionTubi({ onTryIt }: FAQSectionTubiProps) {
           <Button
             size="lg"
             onClick={onTryIt}
-            className="bg-tubi-yellow px-8 py-6 text-lg font-semibold text-tubi-dark hover:bg-tubi-yellow/90"
+            className="cursor-pointer bg-tubi-yellow px-8 py-6 text-lg font-semibold text-tubi-dark hover:bg-tubi-dark hover:text-tubi-yellow"
           >
             Try it
           </Button>
