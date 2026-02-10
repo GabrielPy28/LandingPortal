@@ -10,7 +10,11 @@ import { Play, Sparkles } from "lucide-react";
 const META_APPLY_URL =
   "https://www.facebook.com/creator_programs/signup?referral_code=RJDWEF&id=1";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  onOpenConnectModal?: () => void;
+}
+
+export function HeroSection({ onOpenConnectModal }: HeroSectionProps) {
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -120,7 +124,18 @@ export function HeroSection() {
           $5,000 in bonuses during your first 90 days—directly from Meta.
         </p>
 
-        <div ref={ctaRef} className="mt-10 flex flex-col gap-4 sm:flex-row">
+        <div ref={ctaRef} className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+          {onOpenConnectModal && (
+            <Button
+              type="button"
+              size="lg"
+              onClick={onOpenConnectModal}
+              className="order-first flex items-center gap-2 rounded-full bg-meta-pink px-8 py-6 text-lg font-semibold text-white shadow-sm hover:bg-meta-pink/90 sm:order-none"
+            >
+              <Sparkles className="size-4" />
+              Connect me
+            </Button>
+          )}
           <Button
             asChild
             size="lg"

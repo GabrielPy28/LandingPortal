@@ -18,7 +18,11 @@ const NAV_LINKS = [
   { href: "#contact", label: "Contact" },
 ];
 
-export function Header() {
+interface HeaderProps {
+  onOpenConnectModal?: () => void;
+}
+
+export function Header({ onOpenConnectModal }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -47,7 +51,7 @@ export function Header() {
           <span className="font-bold text-white">La Neta</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-6 md:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -57,6 +61,17 @@ export function Header() {
               {link.label}
             </a>
           ))}
+          {onOpenConnectModal && (
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={onOpenConnectModal}
+              className="border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+            >
+              Connect me
+            </Button>
+          )}
           <Button
             asChild
             size="sm"
@@ -94,6 +109,19 @@ export function Header() {
                 {link.label}
               </a>
             ))}
+            {onOpenConnectModal && (
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full border-white/30 bg-white/5 text-white hover:bg-white/10"
+                onClick={() => {
+                  onOpenConnectModal();
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                Connect me to new opportunities
+              </Button>
+            )}
             <Button
               asChild
               className="w-full bg-meta-purple hover:bg-meta-purple/90"
