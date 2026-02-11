@@ -45,6 +45,8 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
   const [platformError, setPlatformError] = useState("");
   const [formData, setFormData] = useState({
     fullName: "",
+    userEmail: "",
+    userPhone: "",
     bestContactType: "" as string,
     contactDetail: "",
     managerPhone: "",
@@ -53,6 +55,7 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
     instagramUrl: "",
     tiktokUrl: "",
     facebookUrl: "",
+    twitchUrl: "",
     otherUrl: "",
     contentNiche: [] as string[],
     contentNicheOther: "",
@@ -88,6 +91,8 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
     ].join(", ");
     submitConnectOpportunitiesForm({
       fullName: formData.fullName,
+      userEmail: formData.userEmail,
+      userPhone: formData.userPhone,
       typeOfContact: formData.bestContactType,
       contactDetail: formData.contactDetail,
       managerPhone: formData.managerPhone,
@@ -96,6 +101,7 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
       instagramAccount: formData.instagramUrl,
       tiktokAccount: formData.tiktokUrl,
       facebookPage: formData.facebookUrl,
+      twitchAccount: formData.twitchUrl,
       other: formData.otherUrl,
       contentNiche: nicheText || "",
       exploreOptions: formData.exploreOptions,
@@ -104,22 +110,47 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
     setTimeout(onClose, 3000);
   };
 
+  const isValidEmail = (value: string) => {
+    const email = value.trim();
+    if (!email) return false;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const isValidPhone = (value: string) => {
+    const digits = value.replace(/\D/g, "");
+    return digits.length >= 7;
+  };
+
   const canProceed = () => {
     switch (step) {
       case 1:
         return formData.fullName.trim().length > 0;
       case 2:
+        return isValidEmail(formData.userEmail);
+      case 3:
+        return isValidPhone(formData.userPhone);
+      case 4:
         if (!formData.bestContactType) return false;
         if (formData.bestContactType === "Manager")
-          return formData.contactDetail.trim().length > 0 && formData.managerPhone.trim().length > 0;
-        return formData.contactDetail.trim().length > 0;
-      case 3:
+          return (
+            isValidEmail(formData.contactDetail) &&
+            isValidPhone(formData.managerPhone)
+          );
+        if (formData.bestContactType === "Email") {
+          return isValidEmail(formData.contactDetail);
+        }
+        if (formData.bestContactType === "Phone number/WhatsApp") {
+          return isValidPhone(formData.contactDetail);
+        }
+        return false;
+      case 5:
         if (!formData.mainPlatform) return false;
         const main = formData.mainPlatform.toLowerCase();
         if (main === "youtube") return formData.youtubeUrl.trim().length > 0;
         if (main === "instagram") return formData.instagramUrl.trim().length > 0;
         if (main === "tiktok") return formData.tiktokUrl.trim().length > 0;
         if (main === "facebook") return formData.facebookUrl.trim().length > 0;
+        if (main === "twitch") return formData.twitchUrl.trim().length > 0;
         if (main === "other") return formData.otherUrl.trim().length > 0;
         if (main === "multiple platforms")
           return [
@@ -127,12 +158,13 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
             formData.instagramUrl,
             formData.tiktokUrl,
             formData.facebookUrl,
+            formData.twitchUrl,
             formData.otherUrl,
           ].some((u) => u.trim().length > 0);
         return true;
-      case 4:
+      case 6:
         return formData.contentNiche.length > 0 || formData.contentNicheOther.trim().length > 0;
-      case 5:
+      case 7:
         return !!formData.exploreOptions;
       default:
         return true;
@@ -144,8 +176,8 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
 
   if (!isOpen) return null;
 
-  const totalSteps = 6;
-  const isLastStep = step === 5;
+  const totalSteps = 8;
+  const isLastStep = step === 7;
 
   const validatePlatformStep = () => {
     if (!formData.mainPlatform) {
@@ -154,14 +186,43 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
     }
 
     const urlMatchesPlatform = (platform: string, url: string) => {
-      const value = url.toLowerCase();
-      if (!value.trim()) return false;
+      const value = url.toLowerCase().trim();
+      if (!value) return false;
       if (platform === "youtube") return value.includes("youtube.com") || value.includes("youtu.be");
       if (platform === "instagram") return value.includes("instagram.com");
       if (platform === "tiktok") return value.includes("tiktok.com");
       if (platform === "facebook") return value.includes("facebook.com");
+      if (platform === "twitch") return value.includes("twitch.tv");
       return true;
     };
+
+    const isValidHttpUrlFormat = (url: string) => /^https?:\/\//i.test(url.trim());
+
+    // First, validate that any filled profile URL matches its platform
+    if (formData.youtubeUrl.trim() && !urlMatchesPlatform("youtube", formData.youtubeUrl)) {
+      setPlatformError("Please enter a valid YouTube channel URL in the YouTube field.");
+      return false;
+    }
+    if (formData.instagramUrl.trim() && !urlMatchesPlatform("instagram", formData.instagramUrl)) {
+      setPlatformError("Please enter a valid Instagram profile URL in the Instagram field.");
+      return false;
+    }
+    if (formData.tiktokUrl.trim() && !urlMatchesPlatform("tiktok", formData.tiktokUrl)) {
+      setPlatformError("Please enter a valid TikTok profile URL in the TikTok field.");
+      return false;
+    }
+    if (formData.facebookUrl.trim() && !urlMatchesPlatform("facebook", formData.facebookUrl)) {
+      setPlatformError("Please enter a valid Facebook page URL in the Facebook field.");
+      return false;
+    }
+    if (formData.twitchUrl.trim() && !urlMatchesPlatform("twitch", formData.twitchUrl)) {
+      setPlatformError("Please enter a valid Twitch channel URL in the Twitch field.");
+      return false;
+    }
+    if (formData.otherUrl.trim() && !isValidHttpUrlFormat(formData.otherUrl)) {
+      setPlatformError("Please enter a valid URL starting with http:// or https:// in the Other platform field.");
+      return false;
+    }
 
     const main = formData.mainPlatform.toLowerCase();
 
@@ -201,9 +262,22 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
         setPlatformError("The main URL should be a Facebook link when Facebook is your primary platform.");
         return false;
       }
+    } else if (main === "twitch") {
+      if (!formData.twitchUrl.trim()) {
+        setPlatformError("Please add your Twitch channel URL.");
+        return false;
+      }
+      if (!urlMatchesPlatform("twitch", formData.twitchUrl)) {
+        setPlatformError("The main URL should be a Twitch link when Twitch is your primary platform.");
+        return false;
+      }
     } else if (main === "other") {
       if (!formData.otherUrl.trim()) {
         setPlatformError("Please add the URL for your main platform.");
+        return false;
+      }
+      if (!isValidHttpUrlFormat(formData.otherUrl)) {
+        setPlatformError("Please enter a valid URL starting with http:// or https:// for your main platform.");
         return false;
       }
     } else if (main === "multiple platforms") {
@@ -328,10 +402,6 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                 <div className="space-y-6">
                   <div className="space-y-2">
                     <p className="text-sm font-semibold text-meta-dark">Full Name</p>
-                    <p className="text-xs text-meta-dark/70">
-                      We use your name to personalize communication and keep your profile consistent
-                      across the opportunities we propose.
-                    </p>
                   </div>
                   <label className="block">
                     <input
@@ -339,7 +409,7 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                       value={formData.fullName}
                       onChange={(e) => setFormData((d) => ({ ...d, fullName: e.target.value }))}
                       className={inputClass}
-                      placeholder="Your name"
+                      placeholder="John Doe"
                       autoFocus
                     />
                   </label>
@@ -360,8 +430,86 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                 </div>
               )}
 
-              {/* Step 2: Best contact */}
+              {/* Step 2: User email */}
               {step === 2 && (
+                <div className="space-y-6">
+                  <div className="space-y-1">
+                    <p className="text-sm font-semibold text-meta-dark">Email</p>
+                    <p className="text-xs text-meta-dark/70">
+                      We&apos;ll use this email for confirmations and, if you prefer, as your main contact for opportunities.
+                    </p>
+                  </div>
+                  <label className="block space-y-1">
+                    <span className="block text-sm font-semibold text-meta-dark">Your email</span>
+                    <input
+                      type="email"
+                      value={formData.userEmail}
+                      onChange={(e) =>
+                        setFormData((d) => ({ ...d, userEmail: e.target.value }))
+                      }
+                      className={inputClass}
+                      placeholder="you@example.com"
+                      autoFocus
+                    />
+                  </label>
+                  <div className="flex gap-3">
+                    <Button variant="outline" onClick={() => setStep(1)}>
+                      <ArrowLeft className="mr-2 size-4" />
+                      Back
+                    </Button>
+                    <Button
+                      onClick={() => setStep(3)}
+                      disabled={!canProceed()}
+                      className="flex-1 bg-meta-purple hover:bg-meta-purple/90"
+                    >
+                      Next
+                      <ArrowRight className="ml-2 size-5" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {/* Step 3: User phone */}
+              {step === 3 && (
+                <div className="space-y-6">
+                  <div className="space-y-1">
+                    <p className="text-sm font-semibold text-meta-dark">Phone / WhatsApp</p>
+                    <p className="text-xs text-meta-dark/70">
+                      Share a number where we can reach you for time-sensitive or high-priority opportunities.
+                    </p>
+                  </div>
+                  <label className="block space-y-1">
+                    <span className="block text-sm font-semibold text-meta-dark">Your phone number</span>
+                    <input
+                      type="tel"
+                      value={formData.userPhone}
+                      onChange={(e) =>
+                        setFormData((d) => ({ ...d, userPhone: e.target.value }))
+                      }
+                      className={inputClass}
+                      placeholder="+1 555 123 4567"
+                      autoFocus
+                    />
+                  </label>
+                  <div className="flex gap-3">
+                    <Button variant="outline" onClick={() => setStep(2)}>
+                      <ArrowLeft className="mr-2 size-4" />
+                      Back
+                    </Button>
+                    <Button
+                      onClick={() => setStep(4)}
+                      disabled={!canProceed()}
+                      className="flex-1 bg-meta-purple hover:bg-meta-purple/90"
+                    >
+                      Next
+                      <ArrowRight className="ml-2 size-5" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {/* Step 4: Best contact */}
+              {step === 4 && (
                 <div className="space-y-6">
                   <div className="space-y-1">
                     <p className="text-sm font-semibold text-meta-dark">
@@ -384,12 +532,22 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                           value={opt.value}
                           checked={formData.bestContactType === opt.value}
                           onChange={() =>
-                            setFormData((d) => ({
-                              ...d,
-                              bestContactType: opt.value,
-                              contactDetail: "",
-                              managerPhone: "",
-                            }))
+                            setFormData((d) => {
+                              let nextContactDetail = d.contactDetail;
+                              if (opt.value === "Email") {
+                                nextContactDetail = d.userEmail;
+                              } else if (opt.value === "Phone number/WhatsApp") {
+                                nextContactDetail = d.userPhone;
+                              } else if (opt.value === "Manager") {
+                                nextContactDetail = "";
+                              }
+                              return {
+                                ...d,
+                                bestContactType: opt.value,
+                                contactDetail: nextContactDetail,
+                                managerPhone: opt.value === "Manager" ? d.managerPhone : "",
+                              };
+                            })
                           }
                           className="size-4 text-meta-purple"
                         />
@@ -452,12 +610,12 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                     </>
                   )}
                   <div className="flex gap-3">
-                    <Button variant="outline" onClick={() => setStep(1)}>
+                    <Button variant="outline" onClick={() => setStep(3)}>
                       <ArrowLeft className="mr-2 size-4" />
                       Back
                     </Button>
                     <Button
-                      onClick={() => setStep(3)}
+                      onClick={() => setStep(5)}
                       disabled={!canProceed()}
                       className="flex-1 bg-meta-purple hover:bg-meta-purple/90"
                     >
@@ -468,145 +626,127 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                 </div>
               )}
 
-              {/* Step 3: Primary platform + URLs */}
-              {step === 3 && (
+              {/* Step 5: Primary platform + URLs */}
+              {step === 5 && (
                 <div className="space-y-6">
                   <div className="space-y-1">
                     <p className="text-sm font-semibold text-meta-dark">
-                      Where do you mainly publish content today?
+                      Social Media Profiles
                     </p>
                     <p className="text-xs text-meta-dark/70">
-                      Knowing your main platform helps us understand your current audience, format,
-                      and what kind of distribution or monetization options make the most sense.
+                      Please provide links to all your active social profiles below. The comprehensive view of your
+                      content helps us effectively match you with the right branded partnerships and growth opportunities.
                     </p>
                   </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    {PLATFORM_OPTIONS.map((p) => (
-                      <label
-                        key={p}
-                        className="flex cursor-pointer items-center gap-2 rounded-lg border border-slate-200 p-3 has-[:checked]:border-meta-purple has-[:checked]:bg-meta-purple/5"
-                      >
-                        <input
-                          type="radio"
-                          name="platform"
-                          value={p}
-                          checked={formData.mainPlatform === p}
-                          onChange={() => {
-                            setFormData((d) => ({ ...d, mainPlatform: p }));
-                            setPlatformError("");
-                          }}
-                          className="size-4 text-meta-purple"
-                        />
-                        <span className="text-sm text-meta-dark">{p}</span>
-                      </label>
-                    ))}
+                  <div className="space-y-3">
+                    <div className="space-y-1">
+                      <p className="text-xs font-semibold text-meta-dark/80">
+                        Where do you mainly publish content today?
+                      </p>
+                      <p className="text-[11px] text-meta-dark/60">
+                        We use this to understand where you upload most of your content, while still reviewing all
+                        your social profiles.
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      {PLATFORM_OPTIONS.map((p) => (
+                        <label
+                          key={p}
+                          className="flex cursor-pointer items-center gap-2 rounded-lg border border-slate-200 p-3 has-[:checked]:border-meta-purple has-[:checked]:bg-meta-purple/5"
+                        >
+                          <input
+                            type="radio"
+                            name="platform"
+                            value={p}
+                            checked={formData.mainPlatform === p}
+                            onChange={() => {
+                              setFormData((d) => ({ ...d, mainPlatform: p }));
+                              setPlatformError("");
+                            }}
+                            className="size-4 text-meta-purple"
+                          />
+                          <span className="text-sm text-meta-dark">{p}</span>
+                        </label>
+                      ))}
+                    </div>
                   </div>
-                  {formData.mainPlatform && formData.mainPlatform !== "Other" && (
-                    <div className="space-y-3 border-t border-slate-200 pt-4">
-                      <p className="text-sm font-semibold text-meta-dark">
-                        Add your profile URLs (main platform required, others optional)
-                      </p>
-                      <p className="text-xs text-meta-dark/70">
-                        We review your public profiles only to understand your content, audience and fit
-                        for specific programs&mdash;not to judge style or production quality.
-                      </p>
-                      {(formData.mainPlatform === "YouTube" ||
-                        formData.mainPlatform === "Multiple platforms") && (
-                        <input
-                          type="url"
-                          placeholder="YouTube channel URL"
-                          value={formData.youtubeUrl}
-                          onChange={(e) => {
-                            setFormData((d) => ({ ...d, youtubeUrl: e.target.value }));
-                            setPlatformError("");
-                          }}
-                          className={inputClass}
-                        />
-                      )}
-                      {(formData.mainPlatform === "Instagram" ||
-                        formData.mainPlatform === "Multiple platforms") && (
-                        <input
-                          type="url"
-                          placeholder="Instagram URL"
-                          value={formData.instagramUrl}
-                          onChange={(e) => {
-                            setFormData((d) => ({ ...d, instagramUrl: e.target.value }));
-                            setPlatformError("");
-                          }}
-                          className={inputClass}
-                        />
-                      )}
-                      {(formData.mainPlatform === "TikTok" ||
-                        formData.mainPlatform === "Multiple platforms") && (
-                        <input
-                          type="url"
-                          placeholder="TikTok URL"
-                          value={formData.tiktokUrl}
-                          onChange={(e) => {
-                            setFormData((d) => ({ ...d, tiktokUrl: e.target.value }));
-                            setPlatformError("");
-                          }}
-                          className={inputClass}
-                        />
-                      )}
-                      {(formData.mainPlatform === "Facebook" ||
-                        formData.mainPlatform === "Multiple platforms") && (
-                        <input
-                          type="url"
-                          placeholder="Facebook page URL"
-                          value={formData.facebookUrl}
-                          onChange={(e) => {
-                            setFormData((d) => ({ ...d, facebookUrl: e.target.value }));
-                            setPlatformError("");
-                          }}
-                          className={inputClass}
-                        />
-                      )}
-                      {(formData.mainPlatform === "Other" ||
-                        formData.mainPlatform === "Multiple platforms") && (
-                        <input
-                          type="url"
-                          placeholder="Other platform URL"
-                          value={formData.otherUrl}
-                          onChange={(e) => {
-                            setFormData((d) => ({ ...d, otherUrl: e.target.value }));
-                            setPlatformError("");
-                          }}
-                          className={inputClass}
-                        />
-                      )}
-                    </div>
-                  )}
-                  {formData.mainPlatform === "Other" && (
-                    <div className="space-y-3 border-t border-slate-200 pt-4">
-                      <p className="text-sm font-semibold text-meta-dark">Other platform URL</p>
-                      <p className="text-xs text-meta-dark/70">
-                        If your main presence is elsewhere, share the link where brands or partners
-                        can best understand your work.
-                      </p>
-                      <input
-                        type="url"
-                        placeholder="Your profile URL"
-                        value={formData.otherUrl}
-                        onChange={(e) => {
-                          setFormData((d) => ({ ...d, otherUrl: e.target.value }));
-                          setPlatformError("");
-                        }}
-                        className={inputClass}
-                      />
-                    </div>
-                  )}
+                  <div className="space-y-3 border-t border-slate-200 pt-4">
+                    <p className="text-xs text-meta-dark/70">
+                      Add links to all your active profiles below. Your main platform is required; the others are optional
+                      but strongly recommended.
+                    </p>
+                    <input
+                      type="url"
+                      placeholder="Instagram profile URL"
+                      value={formData.instagramUrl}
+                      onChange={(e) => {
+                        setFormData((d) => ({ ...d, instagramUrl: e.target.value }));
+                        setPlatformError("");
+                      }}
+                      className={inputClass}
+                    />
+                    <input
+                      type="url"
+                      placeholder="YouTube channel URL"
+                      value={formData.youtubeUrl}
+                      onChange={(e) => {
+                        setFormData((d) => ({ ...d, youtubeUrl: e.target.value }));
+                        setPlatformError("");
+                      }}
+                      className={inputClass}
+                    />
+                    <input
+                      type="url"
+                      placeholder="Facebook page URL"
+                      value={formData.facebookUrl}
+                      onChange={(e) => {
+                        setFormData((d) => ({ ...d, facebookUrl: e.target.value }));
+                        setPlatformError("");
+                      }}
+                      className={inputClass}
+                    />
+                    <input
+                      type="url"
+                      placeholder="TikTok profile URL"
+                      value={formData.tiktokUrl}
+                      onChange={(e) => {
+                        setFormData((d) => ({ ...d, tiktokUrl: e.target.value }));
+                        setPlatformError("");
+                      }}
+                      className={inputClass}
+                    />
+                    <input
+                      type="url"
+                      placeholder="Twitch channel URL"
+                      value={formData.twitchUrl}
+                      onChange={(e) => {
+                        setFormData((d) => ({ ...d, twitchUrl: e.target.value }));
+                        setPlatformError("");
+                      }}
+                      className={inputClass}
+                    />
+                    <input
+                      type="url"
+                      placeholder="Other platform URL (optional)"
+                      value={formData.otherUrl}
+                      onChange={(e) => {
+                        setFormData((d) => ({ ...d, otherUrl: e.target.value }));
+                        setPlatformError("");
+                      }}
+                      className={inputClass}
+                    />
+                  </div>
                   {platformError && (
                     <p className="text-sm text-red-600">{platformError}</p>
                   )}
                   <div className="flex gap-3">
-                    <Button variant="outline" onClick={() => setStep(2)}>
+                    <Button variant="outline" onClick={() => setStep(4)}>
                       <ArrowLeft className="mr-2 size-4" />
                       Back
                     </Button>
                     <Button
                       onClick={() => {
-                        if (validatePlatformStep()) setStep(4);
+                        if (validatePlatformStep()) setStep(6);
                       }}
                       disabled={!canProceed()}
                       className="flex-1 bg-meta-purple hover:bg-meta-purple/90"
@@ -618,16 +758,15 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                 </div>
               )}
 
-              {/* Step 4: Content niche */}
-              {step === 4 && (
+              {/* Step 6: Content niche */}
+              {step === 6 && (
                 <div className="space-y-6">
                   <div className="space-y-1">
                     <p className="text-sm font-semibold text-meta-dark">
                       How would you describe your content? (select all that apply)
                     </p>
                     <p className="text-xs text-meta-dark/70">
-                      This helps us match you with opportunities that fit your style and audience,
-                      instead of sending you completely random programs.
+                      This helps us match you with opportunities that fit your style and audience.
                     </p>
                   </div>
                   <div className="space-y-2">
@@ -669,12 +808,12 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                     />
                   </label>
                   <div className="flex gap-3">
-                    <Button variant="outline" onClick={() => setStep(3)}>
+                    <Button variant="outline" onClick={() => setStep(5)}>
                       <ArrowLeft className="mr-2 size-4" />
                       Back
                     </Button>
                     <Button
-                      onClick={() => setStep(5)}
+                      onClick={() => setStep(7)}
                       disabled={!canProceed()}
                       className="flex-1 bg-meta-purple hover:bg-meta-purple/90"
                     >
@@ -685,8 +824,8 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                 </div>
               )}
 
-              {/* Step 5: Explore options */}
-              {step === 5 && (
+              {/* Step 7: Explore options */}
+              {step === 7 && (
                 <div className="space-y-6">
                   <div className="space-y-1">
                     <p className="text-sm font-semibold text-meta-dark">
@@ -718,7 +857,7 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                     ))}
                   </div>
                   <div className="flex gap-3">
-                    <Button variant="outline" onClick={() => setStep(4)}>
+                    <Button variant="outline" onClick={() => setStep(6)}>
                       <ArrowLeft className="mr-2 size-4" />
                       Back
                     </Button>

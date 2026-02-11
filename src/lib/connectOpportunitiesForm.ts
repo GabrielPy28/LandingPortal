@@ -8,6 +8,8 @@ export const CONNECT_OPPORTUNITIES_FORM_ACTION =
 
 export const CONNECT_OPPORTUNITIES_ENTRIES = {
   fullName: "1260987176",
+  userEmail: "1982474065",
+  userPhone: "131336942",
   typeOfContact: "1267458957",
   contactDetail: "979524203",
   managerPhone: "779328179",
@@ -16,6 +18,7 @@ export const CONNECT_OPPORTUNITIES_ENTRIES = {
   instagramAccount: "47612729",
   tiktokAccount: "413766606",
   facebookPage: "1155237031",
+  twitchAccount: "199448882",
   other: "1010210063",
   contentNiche: "233592289",
   exploreOptions: "541421652",
@@ -23,6 +26,8 @@ export const CONNECT_OPPORTUNITIES_ENTRIES = {
 
 export interface ConnectOpportunitiesPayload {
   fullName: string;
+  userEmail: string;
+  userPhone: string;
   typeOfContact: string;
   contactDetail: string;
   managerPhone: string;
@@ -31,6 +36,7 @@ export interface ConnectOpportunitiesPayload {
   instagramAccount: string;
   tiktokAccount: string;
   facebookPage: string;
+  twitchAccount: string;
   other: string;
   contentNiche: string;
   exploreOptions: string;
@@ -61,6 +67,8 @@ export function submitConnectOpportunitiesForm(data: ConnectOpportunitiesPayload
 
   const entries: [string, string][] = [
     [CONNECT_OPPORTUNITIES_ENTRIES.fullName, data.fullName],
+    [CONNECT_OPPORTUNITIES_ENTRIES.userEmail, data.userEmail],
+    [CONNECT_OPPORTUNITIES_ENTRIES.userPhone, data.userPhone],
     [CONNECT_OPPORTUNITIES_ENTRIES.typeOfContact, data.typeOfContact],
     [CONNECT_OPPORTUNITIES_ENTRIES.contactDetail, data.contactDetail],
     [CONNECT_OPPORTUNITIES_ENTRIES.managerPhone, data.managerPhone],
@@ -69,6 +77,7 @@ export function submitConnectOpportunitiesForm(data: ConnectOpportunitiesPayload
     [CONNECT_OPPORTUNITIES_ENTRIES.instagramAccount, data.instagramAccount],
     [CONNECT_OPPORTUNITIES_ENTRIES.tiktokAccount, data.tiktokAccount],
     [CONNECT_OPPORTUNITIES_ENTRIES.facebookPage, data.facebookPage],
+    [CONNECT_OPPORTUNITIES_ENTRIES.twitchAccount, data.twitchAccount],
     [CONNECT_OPPORTUNITIES_ENTRIES.other, data.other],
     [CONNECT_OPPORTUNITIES_ENTRIES.contentNiche, data.contentNiche],
     [CONNECT_OPPORTUNITIES_ENTRIES.exploreOptions, data.exploreOptions],
