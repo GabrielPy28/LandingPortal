@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { X, ArrowRight, ArrowLeft, Loader2, CheckCircle2, Sparkles } from "lucide-react";
+import { FaInstagram, FaYoutube, FaFacebook, FaTiktok, FaTwitch, FaLink } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { submitConnectOpportunitiesForm } from "@/lib/connectOpportunitiesForm";
 
@@ -33,6 +34,15 @@ const PLATFORM_OPTIONS = [
 ] as const;
 
 const EXPLORE_OPTIONS = ["Yes", "Maybe", "Not right now"] as const;
+
+const SOCIAL_FIELD_STYLES = {
+  Instagram: { color: "#E4405F" },
+  YouTube: { color: "#FF0000" },
+  Facebook: { color: "#1877F2" },
+  TikTok: { color: "#000000" },
+  Twitch: { color: "#9146FF" },
+  Other: { color: "#6641ed" },
+} as const;
 
 interface ConnectOpportunitiesModalProps {
   isOpen: boolean;
@@ -675,66 +685,107 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                       Add links to all your active profiles below. Your main platform is required; the others are optional
                       but strongly recommended.
                     </p>
-                    <input
-                      type="url"
-                      placeholder="Instagram profile URL"
-                      value={formData.instagramUrl}
-                      onChange={(e) => {
-                        setFormData((d) => ({ ...d, instagramUrl: e.target.value }));
-                        setPlatformError("");
-                      }}
-                      className={inputClass}
-                    />
-                    <input
-                      type="url"
-                      placeholder="YouTube channel URL"
-                      value={formData.youtubeUrl}
-                      onChange={(e) => {
-                        setFormData((d) => ({ ...d, youtubeUrl: e.target.value }));
-                        setPlatformError("");
-                      }}
-                      className={inputClass}
-                    />
-                    <input
-                      type="url"
-                      placeholder="Facebook page URL"
-                      value={formData.facebookUrl}
-                      onChange={(e) => {
-                        setFormData((d) => ({ ...d, facebookUrl: e.target.value }));
-                        setPlatformError("");
-                      }}
-                      className={inputClass}
-                    />
-                    <input
-                      type="url"
-                      placeholder="TikTok profile URL"
-                      value={formData.tiktokUrl}
-                      onChange={(e) => {
-                        setFormData((d) => ({ ...d, tiktokUrl: e.target.value }));
-                        setPlatformError("");
-                      }}
-                      className={inputClass}
-                    />
-                    <input
-                      type="url"
-                      placeholder="Twitch channel URL"
-                      value={formData.twitchUrl}
-                      onChange={(e) => {
-                        setFormData((d) => ({ ...d, twitchUrl: e.target.value }));
-                        setPlatformError("");
-                      }}
-                      className={inputClass}
-                    />
-                    <input
-                      type="url"
-                      placeholder="Other platform URL (optional)"
-                      value={formData.otherUrl}
-                      onChange={(e) => {
-                        setFormData((d) => ({ ...d, otherUrl: e.target.value }));
-                        setPlatformError("");
-                      }}
-                      className={inputClass}
-                    />
+                    {(() => {
+                      const main = formData.mainPlatform;
+                      const activeStyle = (color: string) => ({
+                        borderColor: color,
+                        boxShadow: `0 0 0 2px ${color}33`,
+                      });
+                      return (
+                        <>
+                          <div
+                            className={`flex items-center gap-3 rounded-lg border bg-white transition-[border-color,box-shadow] duration-200 focus-within:ring-2 focus-within:ring-offset-0 ${main === "Instagram" || main === "Multiple platforms" || formData.instagramUrl.trim() ? "" : "border-slate-200"}`}
+                            style={main === "Instagram" || main === "Multiple platforms" || formData.instagramUrl.trim() ? activeStyle(SOCIAL_FIELD_STYLES.Instagram.color) : undefined}
+                          >
+                            <span className={`flex shrink-0 items-center justify-center pl-4 transition-colors duration-200 ${main === "Instagram" || main === "Multiple platforms" || formData.instagramUrl.trim() ? "" : "text-slate-400"}`} style={main === "Instagram" || main === "Multiple platforms" || formData.instagramUrl.trim() ? { color: SOCIAL_FIELD_STYLES.Instagram.color } : undefined} aria-hidden>
+                              <FaInstagram className="size-5" />
+                            </span>
+                            <input
+                              type="url"
+                              placeholder="Instagram profile URL"
+                              value={formData.instagramUrl}
+                              onChange={(e) => { setFormData((d) => ({ ...d, instagramUrl: e.target.value })); setPlatformError(""); }}
+                              className="min-w-0 flex-1 border-0 bg-transparent py-3 pr-4 text-meta-dark placeholder:text-slate-400 focus:outline-none focus:ring-0"
+                            />
+                          </div>
+                          <div
+                            className={`flex items-center gap-3 rounded-lg border bg-white transition-[border-color,box-shadow] duration-200 focus-within:ring-2 focus-within:ring-offset-0 ${main === "YouTube" || main === "Multiple platforms" || formData.youtubeUrl.trim() ? "" : "border-slate-200"}`}
+                            style={main === "YouTube" || main === "Multiple platforms" || formData.youtubeUrl.trim() ? activeStyle(SOCIAL_FIELD_STYLES.YouTube.color) : undefined}
+                          >
+                            <span className={`flex shrink-0 items-center justify-center pl-4 transition-colors duration-200 ${main === "YouTube" || main === "Multiple platforms" || formData.youtubeUrl.trim() ? "" : "text-slate-400"}`} style={main === "YouTube" || main === "Multiple platforms" || formData.youtubeUrl.trim() ? { color: SOCIAL_FIELD_STYLES.YouTube.color } : undefined} aria-hidden>
+                              <FaYoutube className="size-5" />
+                            </span>
+                            <input
+                              type="url"
+                              placeholder="YouTube channel URL"
+                              value={formData.youtubeUrl}
+                              onChange={(e) => { setFormData((d) => ({ ...d, youtubeUrl: e.target.value })); setPlatformError(""); }}
+                              className="min-w-0 flex-1 border-0 bg-transparent py-3 pr-4 text-meta-dark placeholder:text-slate-400 focus:outline-none focus:ring-0"
+                            />
+                          </div>
+                          <div
+                            className={`flex items-center gap-3 rounded-lg border bg-white transition-[border-color,box-shadow] duration-200 focus-within:ring-2 focus-within:ring-offset-0 ${main === "Facebook" || main === "Multiple platforms" || formData.facebookUrl.trim() ? "" : "border-slate-200"}`}
+                            style={main === "Facebook" || main === "Multiple platforms" || formData.facebookUrl.trim() ? activeStyle(SOCIAL_FIELD_STYLES.Facebook.color) : undefined}
+                          >
+                            <span className={`flex shrink-0 items-center justify-center pl-4 transition-colors duration-200 ${main === "Facebook" || main === "Multiple platforms" || formData.facebookUrl.trim() ? "" : "text-slate-400"}`} style={main === "Facebook" || main === "Multiple platforms" || formData.facebookUrl.trim() ? { color: SOCIAL_FIELD_STYLES.Facebook.color } : undefined} aria-hidden>
+                              <FaFacebook className="size-5" />
+                            </span>
+                            <input
+                              type="url"
+                              placeholder="Facebook page URL"
+                              value={formData.facebookUrl}
+                              onChange={(e) => { setFormData((d) => ({ ...d, facebookUrl: e.target.value })); setPlatformError(""); }}
+                              className="min-w-0 flex-1 border-0 bg-transparent py-3 pr-4 text-meta-dark placeholder:text-slate-400 focus:outline-none focus:ring-0"
+                            />
+                          </div>
+                          <div
+                            className={`flex items-center gap-3 rounded-lg border bg-white transition-[border-color,box-shadow] duration-200 focus-within:ring-2 focus-within:ring-offset-0 ${main === "TikTok" || main === "Multiple platforms" || formData.tiktokUrl.trim() ? "" : "border-slate-200"}`}
+                            style={main === "TikTok" || main === "Multiple platforms" || formData.tiktokUrl.trim() ? activeStyle(SOCIAL_FIELD_STYLES.TikTok.color) : undefined}
+                          >
+                            <span className={`flex shrink-0 items-center justify-center pl-4 transition-colors duration-200 ${main === "TikTok" || main === "Multiple platforms" || formData.tiktokUrl.trim() ? "" : "text-slate-400"}`} style={main === "TikTok" || main === "Multiple platforms" || formData.tiktokUrl.trim() ? { color: SOCIAL_FIELD_STYLES.TikTok.color } : undefined} aria-hidden>
+                              <FaTiktok className="size-5" />
+                            </span>
+                            <input
+                              type="url"
+                              placeholder="TikTok profile URL"
+                              value={formData.tiktokUrl}
+                              onChange={(e) => { setFormData((d) => ({ ...d, tiktokUrl: e.target.value })); setPlatformError(""); }}
+                              className="min-w-0 flex-1 border-0 bg-transparent py-3 pr-4 text-meta-dark placeholder:text-slate-400 focus:outline-none focus:ring-0"
+                            />
+                          </div>
+                          <div
+                            className={`flex items-center gap-3 rounded-lg border bg-white transition-[border-color,box-shadow] duration-200 focus-within:ring-2 focus-within:ring-offset-0 ${main === "Twitch" || main === "Multiple platforms" || formData.twitchUrl.trim() ? "" : "border-slate-200"}`}
+                            style={main === "Twitch" || main === "Multiple platforms" || formData.twitchUrl.trim() ? activeStyle(SOCIAL_FIELD_STYLES.Twitch.color) : undefined}
+                          >
+                            <span className={`flex shrink-0 items-center justify-center pl-4 transition-colors duration-200 ${main === "Twitch" || main === "Multiple platforms" || formData.twitchUrl.trim() ? "" : "text-slate-400"}`} style={main === "Twitch" || main === "Multiple platforms" || formData.twitchUrl.trim() ? { color: SOCIAL_FIELD_STYLES.Twitch.color } : undefined} aria-hidden>
+                              <FaTwitch className="size-5" />
+                            </span>
+                            <input
+                              type="url"
+                              placeholder="Twitch channel URL"
+                              value={formData.twitchUrl}
+                              onChange={(e) => { setFormData((d) => ({ ...d, twitchUrl: e.target.value })); setPlatformError(""); }}
+                              className="min-w-0 flex-1 border-0 bg-transparent py-3 pr-4 text-meta-dark placeholder:text-slate-400 focus:outline-none focus:ring-0"
+                            />
+                          </div>
+                          <div
+                            className={`flex items-center gap-3 rounded-lg border bg-white transition-[border-color,box-shadow] duration-200 focus-within:ring-2 focus-within:ring-offset-0 ${main === "Other" || formData.otherUrl.trim() ? "" : "border-slate-200"}`}
+                            style={main === "Other" || formData.otherUrl.trim() ? activeStyle(SOCIAL_FIELD_STYLES.Other.color) : undefined}
+                          >
+                            <span className={`flex shrink-0 items-center justify-center pl-4 transition-colors duration-200 ${main === "Other" || formData.otherUrl.trim() ? "" : "text-slate-400"}`} style={main === "Other" || formData.otherUrl.trim() ? { color: SOCIAL_FIELD_STYLES.Other.color } : undefined} aria-hidden>
+                              <FaLink className="size-5" />
+                            </span>
+                            <input
+                              type="url"
+                              placeholder="Other platform URL (optional)"
+                              value={formData.otherUrl}
+                              onChange={(e) => { setFormData((d) => ({ ...d, otherUrl: e.target.value })); setPlatformError(""); }}
+                              className="min-w-0 flex-1 border-0 bg-transparent py-3 pr-4 text-meta-dark placeholder:text-slate-400 focus:outline-none focus:ring-0"
+                            />
+                          </div>
+                        </>
+                      );
+                    })()}
                   </div>
                   {platformError && (
                     <p className="text-sm text-red-600">{platformError}</p>
