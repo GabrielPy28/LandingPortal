@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, ArrowRight, ArrowLeft, Loader2, CheckCircle2 } from "lucide-react";
+import { X, ArrowRight, ArrowLeft, Loader2, CheckCircle2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { submitConnectOpportunitiesForm } from "@/lib/connectOpportunitiesForm";
 
@@ -240,9 +240,9 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
         className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl border border-white/10 bg-white shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white px-6 py-4">
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-gradient-to-r from-white to-meta-purple/5 px-6 py-4">
           <h2 id="connect-opportunities-title" className="text-xl font-bold text-meta-dark">
-          ✨ Match Your Creative Profile With Our Campaigns
+            Unlock the Full World of La Neta Opportunities
           </h2>
           <button
             type="button"
@@ -279,12 +279,14 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
           ) : (
             <>
               {/* Progress */}
-              <div className="mb-6 flex gap-1">
+              <div className="mb-6 flex gap-1.5">
                 {Array.from({ length: totalSteps }).map((_, i) => (
                   <div
                     key={i}
-                    className={`h-1 flex-1 rounded-full ${
-                      i <= step ? "bg-meta-purple" : "bg-slate-200"
+                    className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
+                      i <= step
+                        ? "bg-gradient-to-r from-meta-purple to-meta-purple/80 shadow-sm shadow-meta-purple/30"
+                        : "bg-slate-200"
                     }`}
                   />
                 ))}
@@ -293,19 +295,29 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
               {/* Step 0: Welcome */}
               {step === 0 && (
                 <div className="space-y-6">
-                  <p className="text-meta-dark/90">
-                    To connect you with the right opportunities, we first need to understand a bit about you
-                    and your content. This helps us avoid generic offers and keep everything relevant.
-                  </p>
-                  <p className="text-sm text-meta-dark/70">
-                    We&apos;ll ask a few quick questions about who you are, how to contact you, where you publish,
-                    and what kind of content you create.
-                  </p>
+                  <div className="rounded-xl bg-gradient-to-br from-meta-purple/10 via-meta-purple/5 to-transparent p-5 ring-1 ring-meta-purple/10">
+                    <div className="mb-4 flex items-center gap-2 text-meta-purple">
+                      <Sparkles className="size-5 shrink-0" aria-hidden />
+                      <span className="text-sm font-semibold tracking-wide">What’s waiting for you</span>
+                    </div>
+                    <div className="space-y-4 text-meta-dark/90">
+                      <p className="leading-relaxed">
+                        Here at La Neta, we have a wide range of opportunities waiting for you—from{" "}
+                        <span className="font-medium text-meta-dark">brand deals</span>,{" "}
+                        <span className="font-medium text-meta-dark">exclusive events</span>, and{" "}
+                        <span className="font-medium text-meta-dark">streaming options</span> to new ways to distribute your content that you might not know about.
+                      </p>
+                      <p className="leading-relaxed">
+                        To match you with the best offers, we need to know a little more about your content.{" "}
+                        <span className="font-semibold text-meta-dark">Complete your profile</span> so we can contact you with the right opportunities.
+                      </p>
+                    </div>
+                  </div>
                   <Button
                     onClick={() => setStep(1)}
-                    className="w-full bg-meta-purple py-6 hover:bg-meta-purple/90"
+                    className="w-full bg-gradient-to-r from-meta-purple to-meta-purple/90 py-6 text-base font-semibold shadow-lg shadow-meta-purple/25 transition-all duration-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-meta-purple/30 active:scale-[0.99]"
                   >
-                    Get started
+                    Get Started
                     <ArrowRight className="ml-2 size-5" />
                   </Button>
                 </div>
