@@ -10,6 +10,7 @@ export const CONNECT_OPPORTUNITIES_ENTRIES = {
   fullName: "1260987176",
   typeOfContact: "1267458957",
   contactDetail: "979524203",
+  managerPhone: "779328179",
   mainPlatform: "1172606629",
   youtubeChannel: "945727573",
   instagramAccount: "47612729",
@@ -24,6 +25,7 @@ export interface ConnectOpportunitiesPayload {
   fullName: string;
   typeOfContact: string;
   contactDetail: string;
+  managerPhone: string;
   mainPlatform: string;
   youtubeChannel: string;
   instagramAccount: string;
@@ -61,6 +63,7 @@ export function submitConnectOpportunitiesForm(data: ConnectOpportunitiesPayload
     [CONNECT_OPPORTUNITIES_ENTRIES.fullName, data.fullName],
     [CONNECT_OPPORTUNITIES_ENTRIES.typeOfContact, data.typeOfContact],
     [CONNECT_OPPORTUNITIES_ENTRIES.contactDetail, data.contactDetail],
+    [CONNECT_OPPORTUNITIES_ENTRIES.managerPhone, data.managerPhone],
     [CONNECT_OPPORTUNITIES_ENTRIES.mainPlatform, data.mainPlatform],
     [CONNECT_OPPORTUNITIES_ENTRIES.youtubeChannel, data.youtubeChannel],
     [CONNECT_OPPORTUNITIES_ENTRIES.instagramAccount, data.instagramAccount],

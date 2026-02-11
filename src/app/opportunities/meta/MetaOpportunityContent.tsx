@@ -13,6 +13,7 @@ import {
   LaNetaSection,
   Footer,
   ConnectOpportunitiesModal,
+  ConnectOpportunitiesToast,
 } from "@/components/landing";
 
 export function MetaOpportunityContent() {
@@ -31,7 +32,7 @@ export function MetaOpportunityContent() {
       <main className="w-full min-w-0 overflow-x-hidden">
         <HeroSection onOpenConnectModal={() => setShowConnectModal(true)} />
         <MetaOpportunitySection />
-        <GrowthSection />
+        {/*<GrowthSection /> */}
         <FAQSection />
         <ContactForm />
         <LaNetaSection />
@@ -40,8 +41,14 @@ export function MetaOpportunityContent() {
       </main>
       <ConnectOpportunitiesModal
         isOpen={showConnectModal}
-        onClose={() => setShowConnectModal(false)}
+        onClose={() => {
+          setShowConnectModal(false);
+          requestAnimationFrame(() => {
+            document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
+          });
+        }}
       />
+      <ConnectOpportunitiesToast onOpen={() => setShowConnectModal(true)} />
     </div>
   );
 }

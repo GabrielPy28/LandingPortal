@@ -58,6 +58,7 @@ export function HeroSection({ onOpenConnectModal }: HeroSectionProps) {
 
   return (
     <section
+      id="hero"
       ref={heroRef}
       className="relative min-h-screen w-full overflow-hidden bg-meta-dark"
     >
@@ -125,17 +126,6 @@ export function HeroSection({ onOpenConnectModal }: HeroSectionProps) {
         </p>
 
         <div ref={ctaRef} className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-          {onOpenConnectModal && (
-            <Button
-              type="button"
-              size="lg"
-              onClick={onOpenConnectModal}
-              className="order-first flex items-center gap-2 rounded-full bg-meta-pink px-8 py-6 text-lg font-semibold text-white shadow-sm hover:bg-meta-pink/90 sm:order-none"
-            >
-              <Sparkles className="size-4" />
-              Connect me
-            </Button>
-          )}
           <Button
             asChild
             size="lg"
@@ -151,14 +141,26 @@ export function HeroSection({ onOpenConnectModal }: HeroSectionProps) {
               <Play className="size-5" />
             </Link>
           </Button>
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="border-white/30 bg-white/5 px-8 py-6 text-lg text-white hover:bg-white/10 hover:text-white"
-          >
-            <a href="#how-it-works">How It Works</a>
-          </Button>
+          {onOpenConnectModal ? (
+            <Button
+              type="button"
+              variant="outline"
+              size="lg"
+              onClick={onOpenConnectModal}
+              className="cursor-pointer border-meta-pink/60 bg-meta-pink/10 px-8 py-6 text-lg font-medium text-meta-pink hover:border-meta-pink hover:bg-meta-pink/20 hover:text-meta-pink"
+            >
+              Match me
+            </Button>
+          ) : (
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="border-white/30 bg-white/5 px-8 py-6 text-lg text-white hover:bg-white/10 hover:text-white"
+            >
+              <a href="#how-it-works">How It Works</a>
+            </Button>
+          )}
         </div>
       </div>
     </section>

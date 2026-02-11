@@ -9,11 +9,15 @@ import { submitToGoogleForm } from "@/lib/googleForm";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const META_OPPORTUNITY_SUBJECT = "Meta Breakthrough Bonus Program";
+
 interface FormData {
   fullName: string;
   email: string;
   phone: string;
   mainAccountUrl: string;
+  subject: string;
+  message: string;
 }
 
 const initialFormData: FormData = {
@@ -21,6 +25,8 @@ const initialFormData: FormData = {
   email: "",
   phone: "",
   mainAccountUrl: "",
+  subject: META_OPPORTUNITY_SUBJECT,
+  message: "",
 };
 
 export function ContactForm() {
@@ -82,7 +88,11 @@ export function ContactForm() {
     e.preventDefault();
     setStatus("loading");
     setErrorMessage("");
-    submitToGoogleForm(formData);
+    submitToGoogleForm({
+      ...formData,
+      subject: formData.subject,
+      message: formData.message,
+    });
     setStatus("success");
     setFormData(initialFormData);
   };
@@ -115,7 +125,7 @@ export function ContactForm() {
             ref={titleRef}
             className="text-3xl font-bold text-meta-dark sm:text-4xl"
           >
-            Have a Question?
+            Get in touch
           </h2>
           <p className="mt-3 text-slate-600">
             We&apos;re here to help. Send us your inquiry and we&apos;ll get back
@@ -216,6 +226,43 @@ export function ContactForm() {
               <p className="mt-1.5 text-xs text-slate-500">
                 Instagram, TikTok, or YouTube channel URL
               </p>
+            </div>
+
+            <div>
+              <label
+                htmlFor="subject"
+                className="mb-2 block text-sm font-semibold text-meta-dark"
+              >
+                Subject
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                readOnly
+                aria-readonly="true"
+                className={`${inputClass} cursor-default bg-slate-50 text-slate-600`}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="message"
+                className="mb-2 block text-sm font-semibold text-meta-dark"
+              >
+                Message <span className="text-meta-pink">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={5}
+                placeholder="Write your question or message here..."
+                className={`${inputClass} min-h-[120px] resize-y`}
+              />
             </div>
 
             {status === "error" && (

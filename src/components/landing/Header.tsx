@@ -67,9 +67,9 @@ export function Header({ onOpenConnectModal }: HeaderProps) {
               variant="outline"
               size="sm"
               onClick={onOpenConnectModal}
-              className="border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+              className="border-meta-pink/60 bg-meta-pink/10 font-medium text-meta-pink hover:border-meta-pink hover:bg-meta-pink/20 hover:text-meta-pink"
             >
-              Connect me
+              Match me
             </Button>
           )}
           <Button
@@ -113,13 +113,13 @@ export function Header({ onOpenConnectModal }: HeaderProps) {
               <Button
                 type="button"
                 variant="outline"
-                className="w-full border-white/30 bg-white/5 text-white hover:bg-white/10"
+                className="w-full border-meta-pink/60 bg-meta-pink/10 font-medium text-meta-pink hover:border-meta-pink hover:bg-meta-pink/20 hover:text-meta-pink"
                 onClick={() => {
                   onOpenConnectModal();
                   setIsMobileMenuOpen(false);
                 }}
               >
-                Connect me to new opportunities
+                Match me
               </Button>
             )}
             <Button

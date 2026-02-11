@@ -47,6 +47,7 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
     fullName: "",
     bestContactType: "" as string,
     contactDetail: "",
+    managerPhone: "",
     mainPlatform: "" as string,
     youtubeUrl: "",
     instagramUrl: "",
@@ -89,6 +90,7 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
       fullName: formData.fullName,
       typeOfContact: formData.bestContactType,
       contactDetail: formData.contactDetail,
+      managerPhone: formData.managerPhone,
       mainPlatform: formData.mainPlatform,
       youtubeChannel: formData.youtubeUrl,
       instagramAccount: formData.instagramUrl,
@@ -107,7 +109,10 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
       case 1:
         return formData.fullName.trim().length > 0;
       case 2:
-        return formData.bestContactType && formData.contactDetail.trim().length > 0;
+        if (!formData.bestContactType) return false;
+        if (formData.bestContactType === "Manager")
+          return formData.contactDetail.trim().length > 0 && formData.managerPhone.trim().length > 0;
+        return formData.contactDetail.trim().length > 0;
       case 3:
         if (!formData.mainPlatform) return false;
         const main = formData.mainPlatform.toLowerCase();
@@ -237,7 +242,7 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
       >
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white px-6 py-4">
           <h2 id="connect-opportunities-title" className="text-xl font-bold text-meta-dark">
-            Connect me to new opportunities
+          ✨ Match Your Creative Profile With Our Campaigns
           </h2>
           <button
             type="button"
@@ -251,11 +256,25 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
 
         <div className="p-6">
           {status === "success" ? (
-            <div className="flex flex-col items-center gap-4 py-8">
+            <div className="flex flex-col items-center gap-5 py-8 text-center">
               <CheckCircle2 className="size-14 text-green-500" />
-              <p className="text-center text-lg font-medium text-meta-dark">
-                Thanks! We&apos;ll be in touch soon.
-              </p>
+              <div className="space-y-3 text-meta-dark">
+                <p className="text-lg font-medium">
+                  Thanks for sharing your info! 🙌
+                </p>
+                <p className="text-sm text-meta-dark/90">
+                  We&apos;re checking it out to see if we vibe and there&apos;s a potential match.
+                </p>
+                <p className="text-sm text-meta-dark/90">
+                  If it clicks, we&apos;ll reach out through your preferred contact.
+                </p>
+                <p className="text-sm text-meta-dark/90">
+                  Talk soon ✨
+                </p>
+                <p className="text-sm font-semibold">
+                  Team La Neta
+                </p>
+              </div>
             </div>
           ) : (
             <>
@@ -357,6 +376,7 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                               ...d,
                               bestContactType: opt.value,
                               contactDetail: "",
+                              managerPhone: "",
                             }))
                           }
                           className="size-4 text-meta-purple"
@@ -365,12 +385,11 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                       </label>
                     ))}
                   </div>
-                  {formData.bestContactType && (
+                  {formData.bestContactType && formData.bestContactType !== "Manager" && (
                     <label className="block space-y-1">
                       <span className="block text-sm font-semibold text-meta-dark">Contact detail</span>
                       <span className="block text-xs text-meta-dark/70">
-                        Share the specific email, number, or manager contact where you actually
-                        manage partnership conversations.
+                        Share the specific email or number where you actually manage partnership conversations.
                       </span>
                       <input
                         type="text"
@@ -385,6 +404,40 @@ export function ConnectOpportunitiesModal({ isOpen, onClose }: ConnectOpportunit
                         }
                       />
                     </label>
+                  )}
+                  {formData.bestContactType === "Manager" && (
+                    <>
+                      <label className="block space-y-1">
+                        <span className="block text-sm font-semibold text-meta-dark">Manager email</span>
+                        <span className="block text-xs text-meta-dark/70">
+                          We need the manager&apos;s email to reach out about opportunities.
+                        </span>
+                        <input
+                          type="email"
+                          value={formData.contactDetail}
+                          onChange={(e) =>
+                            setFormData((d) => ({ ...d, contactDetail: e.target.value }))
+                          }
+                          className={inputClass}
+                          placeholder="manager@example.com"
+                        />
+                      </label>
+                      <label className="block space-y-1">
+                        <span className="block text-sm font-semibold text-meta-dark">Manager phone (with country code)</span>
+                        <span className="block text-xs text-meta-dark/70">
+                          We also need a phone number (e.g. WhatsApp) for the manager.
+                        </span>
+                        <input
+                          type="tel"
+                          value={formData.managerPhone}
+                          onChange={(e) =>
+                            setFormData((d) => ({ ...d, managerPhone: e.target.value }))
+                          }
+                          className={inputClass}
+                          placeholder="+1 555 123 4567"
+                        />
+                      </label>
+                    </>
                   )}
                   <div className="flex gap-3">
                     <Button variant="outline" onClick={() => setStep(1)}>

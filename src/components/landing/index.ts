@@ -2,6 +2,7 @@ export { HeroSection } from "./HeroSection";
 export { PageLoadAnimation } from "./PageLoadAnimation";
 export { Header } from "./Header";
 export { ConnectOpportunitiesModal } from "./ConnectOpportunitiesModal";
+export { ConnectOpportunitiesToast } from "./ConnectOpportunitiesToast";
 export { LaNetaSection } from "./LaNetaSection";
 export { WhyContactedSection } from "./WhyContactedSection";
 export { MetaOpportunitySection } from "./MetaOpportunitySection";
