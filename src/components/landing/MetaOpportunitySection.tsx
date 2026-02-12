@@ -29,7 +29,7 @@ const META_APPLY_URL =
 const BENEFITS = [
   {
     icon: DollarSign,
-    title: "Direct Monetization",
+    title: "Immediate access to monetization on Facebook and Instagram",
     metric: "From Meta",
     description: "No agencies, no ad setup, no waiting.",
   },
@@ -49,7 +49,7 @@ const BENEFITS = [
     icon: TrendingUp,
     title: "Ongoing Income",
     metric: "Beyond bonuses",
-    description: "Reels, videos, photos, text posts.",
+    description: "Start earning from day one from your Reels, Videos, Photos and more",
   },
   {
     icon: Sparkles,
@@ -76,7 +76,7 @@ const SUCCESS_TIMELINE = [
     phase: "Acceptance",
     time: "24-48 hours",
     title: "Fast response",
-    description: "You'll know if you're in. Meta reviews your presence and content quality.",
+    description: "Meta will review your application and give you a response within 24-48n hours",
   },
   {
     phase: "Onboard",
@@ -290,7 +290,7 @@ export function MetaOpportunitySection() {
           </div>
         </div>
 
-        {/* Key Metrics & Insights */}
+        {/* Key Metrics & Insights 
         <h3 className="mb-8 text-center text-2xl font-semibold text-meta-blue">
           By the Numbers
         </h3>
@@ -313,7 +313,7 @@ export function MetaOpportunitySection() {
             </Card>
           ))}
         </div>
-
+        */}
         {/* Your Journey - Timeline */}
         <h3 className="mb-8 text-center text-2xl font-semibold">
           Your Journey to Monetization

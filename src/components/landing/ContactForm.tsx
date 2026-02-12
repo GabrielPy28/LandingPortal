@@ -192,7 +192,7 @@ export function ContactForm() {
                 htmlFor="phone"
                 className="mb-2 block text-sm font-semibold text-meta-dark"
               >
-                Phone Number (with country code) <span className="text-meta-pink">*</span>
+                Phone Number (with country code) <span className="text-slate-400">(optional)</span>
               </label>
               <input
                 type="tel"
@@ -200,7 +200,6 @@ export function ContactForm() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                required
                 placeholder="+1 555 123 4567"
                 className={inputClass}
               />
@@ -295,7 +294,7 @@ export function ContactForm() {
               ) : (
                 <>
                   <Send className="mr-2 size-5" />
-                  Apply
+                  Send
                 </>
               )}
             </Button>

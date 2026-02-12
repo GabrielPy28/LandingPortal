@@ -149,7 +149,7 @@ export function HeroSection({ onOpenConnectModal }: HeroSectionProps) {
               onClick={onOpenConnectModal}
               className="cursor-pointer border-meta-pink/60 bg-meta-pink/10 px-8 py-6 text-lg font-medium text-meta-pink hover:border-meta-pink hover:bg-meta-pink/20 hover:text-meta-pink"
             >
-              Match me
+              Connect me to other opportunities 
             </Button>
           ) : (
             <Button

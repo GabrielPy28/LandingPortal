@@ -20,7 +20,6 @@ const META_APPLY_URL =
 
 const FAQ_ITEMS = [
   {
-    emoji: "🤔",
     q: "Can I meet all requirements and still not be approved?",
     a: (
       <>
@@ -32,12 +31,11 @@ const FAQ_ITEMS = [
           program!
         </span>{" "}
         We&apos;re here to help you put your best foot forward during this
-        process. 💪
+        process.
       </>
     ),
   },
   {
-    emoji: "📄",
     q: "Do I need a Facebook Page to join?",
     a: (
       <>
@@ -48,12 +46,11 @@ const FAQ_ITEMS = [
           process—it&apos;s super straightforward!
         </span>{" "}
         Or if you already have one, simply link it. We&apos;ll guide you step by
-        step. ✅
+        step.
       </>
     ),
   },
   {
-    emoji: "🎬",
     q: "Can I really repost my TikToks/YT Shorts or IG Reels?",
     a: (
       <>
@@ -63,12 +60,11 @@ const FAQ_ITEMS = [
         You can repost your existing TikTok, YouTube Shorts, or Instagram Reels
         content. No need to start from scratch—just upload directly to Facebook
         (not as a share or embed) and remove any watermarks before posting.
-        Monetize content you&apos;ve already worked hard to create! ✨
+        Monetize content you&apos;ve already worked hard to create!
       </>
     ),
   },
   {
-    emoji: "📊",
     q: "How do I track my earnings?",
     a: (
       <>
@@ -78,12 +74,11 @@ const FAQ_ITEMS = [
         </span>{" "}
         where you can track everything in one place! Earnings in real-time,
         Reels performance metrics, and Breakthrough Bonus progress—it&apos;s all
-        pretty intuitive. We&apos;re here if you need help navigating it! 📈
+        pretty intuitive. We&apos;re here if you need help navigating it!
       </>
     ),
   },
   {
-    emoji: "🔗",
     q: "Where can I find official Meta information?",
     a: (
       <>
@@ -113,12 +108,12 @@ const FAQ_ITEMS = [
             </a>
           </li>
         </ul>
-        Feel free to reach out if you have questions—we&apos;re happy to clarify! 💡
+        <br />
+        Feel free to reach out if you have questions—we&apos;re happy to clarify!
       </>
     ),
   },
-  {
-    emoji: "📋",
+  /*{
     q: "What are the terms of participation?",
     a: (
       <>
@@ -134,12 +129,11 @@ const FAQ_ITEMS = [
           <ExternalLink className="size-3.5" />
         </a>
         . Legal docs can be dry—if you have questions, just ask and we&apos;ll
-        explain in simpler terms! 👍
+        explain in simpler terms!
       </>
     ),
-  },
+  ,*/
   {
-    emoji: "🔐",
     q: "Why do I need to add my TikTok/YouTube accounts?",
     a: (
       <>
@@ -147,12 +141,11 @@ const FAQ_ITEMS = [
         need to verify you meet the program&apos;s eligibility (100,000+
         followers) and that your content quality aligns with what Meta is
         looking for. This helps maximize your chances of approval—it&apos;s just
-        part of the initial screening. Don&apos;t worry! 🛡️
+        part of the initial screening. Don&apos;t worry!
       </>
     ),
   },
   {
-    emoji: "💡",
     q: "If I've joined the program before, am I eligible to join again?",
     a: (
       <>
@@ -164,12 +157,11 @@ const FAQ_ITEMS = [
           But don&apos;t be discouraged!
         </span>{" "}
         New opportunities are always launching. We&apos;re here to help you
-        explore other ways to grow and monetize! 🚀
+        explore other ways to grow and monetize!
       </>
     ),
   },
   {
-    emoji: "⚠️",
     q: "Payout error related to creator's tax information—can you help?",
     a: (
       <>
@@ -177,7 +169,7 @@ const FAQ_ITEMS = [
         payout and tax-related issues need to be handled directly by{" "}
         <span className="font-medium text-meta-purple">Meta Support</span>, as
         they have access to your account&apos;s financial and tax details.
-        We&apos;re here for other questions—reach out anytime! 💬
+        We&apos;re here for other questions—reach out anytime!
       </>
     ),
   },
@@ -232,7 +224,7 @@ export function FAQSection() {
     >
       <div className="container mx-auto max-w-3xl px-6">
         <div className="mb-12 flex flex-col items-center gap-4 text-center">
-          <span className="text-5xl" aria-hidden>
+          <span className="text-5xl text-meta-purple" aria-hidden>
             ❓
           </span>
           <h2
@@ -255,15 +247,9 @@ export function FAQSection() {
                 className="overflow-hidden rounded-xl border border-meta-purple/20 bg-white px-4 shadow-sm transition-shadow hover:shadow-md hover:border-meta-purple/30 data-[state=open]:border-meta-purple/40 data-[state=open]:shadow-lg"
               >
                 <AccordionTrigger className="group flex items-center gap-3 py-5 text-left font-medium text-meta-dark hover:no-underline hover:text-meta-purple">
-                  <span
-                    className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-meta-purple/10 text-lg transition-colors group-hover:bg-meta-purple/20 group-data-[state=open]:bg-meta-purple/20"
-                    aria-hidden
-                  >
-                    {item.emoji}
-                  </span>
                   <span className="flex-1 pr-2">{item.q}</span>
                 </AccordionTrigger>
-                <AccordionContent className="pb-5 pl-14 pr-2">
+                <AccordionContent className="pb-5 pr-2">
                   <div className="rounded-lg border-l-4 border-meta-purple/30 bg-slate-50/50 py-3 pl-4 pr-3 text-slate-600">
                     {item.a}
                   </div>
@@ -274,9 +260,6 @@ export function FAQSection() {
         </div>
 
         <div className="mt-16 flex flex-col items-center gap-6 rounded-2xl border-2 border-dashed border-meta-purple/30 bg-meta-purple/5 p-8 text-center">
-          <span className="text-4xl" aria-hidden>
-            ✨
-          </span>
           <div>
             <p className="text-lg font-semibold text-meta-dark">
               Ready to get started?

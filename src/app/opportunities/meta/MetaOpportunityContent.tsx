@@ -32,11 +32,11 @@ export function MetaOpportunityContent() {
       <main className="w-full min-w-0 overflow-x-hidden">
         <HeroSection onOpenConnectModal={() => setShowConnectModal(true)} />
         <MetaOpportunitySection />
+        <WhyContactedSection />
         {/*<GrowthSection /> */}
         <FAQSection />
         <ContactForm />
         <LaNetaSection />
-        <WhyContactedSection />
         <Footer />
       </main>
       <ConnectOpportunitiesModal
