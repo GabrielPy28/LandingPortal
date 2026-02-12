@@ -10,12 +10,12 @@ const META_APPLY_URL =
   "https://www.facebook.com/creator_programs/signup?referral_code=RJDWEF&id=1";
 
 const NAV_LINKS = [
-  { href: "#la-neta", label: "La Neta" },
-  { href: "#why-contacted", label: "Why Contacted" },
   { href: "#meta-opportunity", label: "Program" },
-  { href: "#growth", label: "Growth" },
+  { href: "#why-contacted", label: "Why Contacted" },
+  { href: "#meta-opportunity-benefits", label: "Benefits" },
   { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
+  { href: "#la-neta", label: "La Neta" },
 ];
 
 interface HeaderProps {
