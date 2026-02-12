@@ -6,6 +6,8 @@ export { ConnectOpportunitiesToast } from "./ConnectOpportunitiesToast";
 export { LaNetaSection } from "./LaNetaSection";
 export { WhyContactedSection } from "./WhyContactedSection";
 export { MetaOpportunitySection } from "./MetaOpportunitySection";
+export { MetaOpportunitySectionPart1 } from "./MetaOpportunitySectionPart1";
+export { MetaOpportunitySectionPart2 } from "./MetaOpportunitySectionPart2";
 export { GrowthSection } from "./GrowthSection";
 export { FAQSection } from "./FAQSection";
 export { ContactForm } from "./ContactForm";

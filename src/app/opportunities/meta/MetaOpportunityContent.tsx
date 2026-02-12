@@ -6,8 +6,8 @@ import {
   HeroSection,
   Header,
   WhyContactedSection,
-  MetaOpportunitySection,
-  GrowthSection,
+  MetaOpportunitySectionPart1,
+  MetaOpportunitySectionPart2,
   FAQSection,
   ContactForm,
   LaNetaSection,
@@ -31,9 +31,9 @@ export function MetaOpportunityContent() {
       <Header onOpenConnectModal={() => setShowConnectModal(true)} />
       <main className="w-full min-w-0 overflow-x-hidden">
         <HeroSection onOpenConnectModal={() => setShowConnectModal(true)} />
-        <MetaOpportunitySection />
+        <MetaOpportunitySectionPart1 />
         <WhyContactedSection />
-        {/*<GrowthSection /> */}
+        <MetaOpportunitySectionPart2 />
         <FAQSection />
         <ContactForm />
         <LaNetaSection />
