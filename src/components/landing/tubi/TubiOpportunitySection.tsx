@@ -9,12 +9,12 @@ import { CobwebDecoration } from "./CobwebDecoration";
 gsap.registerPlugin(ScrollTrigger);
 
 const CRITERIA = [
-  "Long-form only (15+ min per file)",
-  "Serialized or episodic (miniseries, episodes, movies)",
-  "High production value (TV quality)",
-  "100% IP ownership",
-  "Sync + Master music rights (no YouTube Audio Library)",
-  "No burnt-in ads, watermarks, or lower-thirds",
+  "Content Type: High-quality serialized or episodic content (miniseries, movies, documentaries).",
+  "Genre Focus: Priority given to Horror, Thriller, Mystery, and True Crime.",
+  "Format: Long-form video files only (15+ minutes per episode). Ideal for compilations if original videos are short.",
+  "Clean Feed: Content must be free of burnt-in ads, lower-thirds, and social media watermarks.",
+  "Music Rights (crucial): You must hold 100% of Synchronization and Master rights for all music in your videos.",
+  "Important: Music from the YouTube Audio Library is NOT accepted for Tubi distribution.",
 ];
 
 export function TubiOpportunitySection() {
@@ -65,8 +65,8 @@ export function TubiOpportunitySection() {
             <p className="mt-1 text-base text-tubi-yellow/80 md:text-lg">Movies & TV episodes</p>
           </div>
           <div className="rounded-xl border border-tubi-yellow/20 bg-tubi-purple/10 px-4 py-5 text-center">
-            <p className="text-2xl font-bold text-tubi-yellow md:text-3xl">50%</p>
-            <p className="mt-1 text-base text-tubi-yellow/80 md:text-lg">Your share of net revenue</p>
+            <p className="text-2xl font-bold text-tubi-yellow md:text-3xl">32%</p>
+            <p className="mt-1 text-base text-tubi-yellow/80 md:text-lg">of Tubi viewers are not on YouTube</p>
           </div>
         </div>
 

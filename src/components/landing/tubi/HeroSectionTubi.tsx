@@ -83,23 +83,26 @@ export function HeroSectionTubi({ onTryIt }: HeroSectionTubiProps) {
           ref={badgeRef}
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-tubi-yellow/50 bg-tubi-yellow/10 px-4 py-2 text-sm text-tubi-yellow"
         >
-          Horror · Thriller · Mystery
+          Invite-only · Horror · Thriller · Mystery
         </div>
 
         <h1
           ref={titleRef}
           className="max-w-4xl text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl"
         >
-          Your long-form content.{" "}
+          Invite-Only: Bring Your Mystery &amp; Thriller Series to{" "}
           <span className="bg-gradient-to-r from-tubi-yellow via-tubi-purple to-laneta-pink bg-clip-text text-transparent">
-            On Tubi.
+            Tubi
           </span>
         </h1>
 
-        <p ref={subtitleRef} className="mt-6 max-w-2xl text-xl text-tubi-yellow/90 sm:text-2xl">
-          Partner with La Neta to distribute your long-form horror, thriller, and mystery
-          content on Tubi. Reach 97M+ monthly viewers, earn 50% of net revenue from your content,
-          and get featured in Creatorverse. Ideal for YouTube creators with 15+ minute videos.
+        <p
+          ref={subtitleRef}
+          className="mt-6 max-w-2xl text-xl text-tubi-yellow/90 sm:text-2xl"
+        >
+          Are you a YouTube creator producing high-quality serialized content?{" "}
+          Partner with La Neta to distribute your premium back-catalog on Tubi,
+          the leading free streaming platform in the US.
         </p>
 
         <div ref={ctaRef} className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -108,7 +111,7 @@ export function HeroSectionTubi({ onTryIt }: HeroSectionTubiProps) {
             onClick={onTryIt}
             className="cursor-pointer bg-tubi-yellow px-8 py-6 text-lg font-semibold text-tubi-dark hover:bg-tubi-dark hover:text-tubi-yellow"
           >
-            Try it
+            Check Eligibility
           </Button>
           <Button
             asChild
@@ -118,6 +121,19 @@ export function HeroSectionTubi({ onTryIt }: HeroSectionTubiProps) {
           >
             <a href="#opportunity">See the opportunity</a>
           </Button>
+        </div>
+
+        {/* Note: who this invite is for */}
+        <div className="mt-6 max-w-2xl rounded-xl border border-tubi-yellow/30 bg-tubi-purple/20 px-4 py-3 text-left text-sm text-tubi-yellow/80 shadow-md shadow-black/30">
+          <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-tubi-yellow/90">
+            Who is this invite for?
+          </p>
+          <p>
+            This is an invitation-only program designed for creators of long-form
+            Horror, Thriller, and True Crime series. Apply today to see if your
+            channel qualifies to reach over 80 million monthly viewers and earn
+            passive revenue outside of YouTube.
+          </p>
         </div>
       </div>
     </section>

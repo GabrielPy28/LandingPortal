@@ -9,20 +9,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 const BENEFITS = [
   {
-    title: "Higher CPM potential",
-    text: "Benchmarks suggest Tubi's CPM can be around twice that of YouTube for comparable content. AVOD means you earn from ad views without asking your audience to pay.",
+    title: "New Revenue Stream",
+    text: "Operate under a Revenue-Share Partnership model. Monetize your existing library without any extra production effort.",
   },
   {
-    title: "New audience, same content",
-    text: "Reach cord-cutters and streaming viewers who may never find you on YouTube. Your long-form horror, thriller, and mystery content fits Tubi's catalog and audience.",
+    title: "Expand Your Audience",
+    text: "Reach a massive new audience on TV screens. 32% of Tubi viewers are not on YouTube, giving your series visibility beyond your current channel.",
   },
   {
-    title: "No exclusivity",
-    text: "Keep publishing on YouTube and other platforms. We distribute on Tubi in addition to your existing channels—you expand reach without locking yourself in.",
+    title: "Premium Positioning",
+    text: "Place your content alongside Hollywood movies and major TV shows. Build your bridge to the streaming world while keeping your existing presence.",
   },
   {
-    title: "Creatorverse visibility",
-    text: "Your content is featured in Tubi's Creatorverse section and placed on relevant shelves, so fans of the genre can discover your work easily.",
+    title: "100% Ownership",
+    text: "You retain full ownership of your IP. We simply manage the distribution pipeline and reporting so you can focus on creating.",
   },
 ];
 
