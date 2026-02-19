@@ -1,0 +1,13 @@
+export { PageLoadAnimationGyre } from "./PageLoadAnimationGyre";
+export { HeaderGyre } from "./HeaderGyre";
+export { HeroSectionGyre } from "./HeroSectionGyre";
+export { WhyContactedSectionGyre } from "./WhyContactedSectionGyre";
+export { WhoIsLaNetaGyre } from "./WhoIsLaNetaGyre";
+export { ServicePresentationGyrePart1 } from "./ServicePresentationGyrePart1";
+export { ServicePresentationGyrePart2 } from "./ServicePresentationGyrePart2";
+export { PartnershipModelGyre } from "./PartnershipModelGyre";
+export { PartnershipModelAffiliateGyre } from "./PartnershipModelAffiliateGyre";
+export { FAQSectionGyre } from "./FAQSectionGyre";
+export { CTASectionGyre } from "./CtaSectionGyre";
+export { FooterGyre } from "./FooterGyre";
+export { WhatIsThisGyre } from "./WhatIsThisGyre";

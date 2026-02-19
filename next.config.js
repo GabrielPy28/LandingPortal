@@ -9,6 +9,11 @@ const nextConfig = {
         hostname: "yt3.googleusercontent.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com",
+        pathname: "/**",
+      },
     ],
   },
 };

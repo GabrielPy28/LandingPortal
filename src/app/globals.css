@@ -25,6 +25,11 @@
   --color-laneta-pink: var(--laneta-pink);
   --color-laneta-slate: var(--laneta-slate);
   --color-laneta-bg: var(--laneta-bg);
+  /* Gyre + La Neta (opportunities/gyre) */
+  --color-gyre-red: var(--gyre-red);
+  --color-gyre-dark: var(--gyre-dark);
+  --color-gyre-deep: var(--gyre-deep);
+  --color-gyre-muted: var(--gyre-muted);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -89,6 +94,11 @@
   --laneta-pink: #ff47ac;
   --laneta-slate: #0f172a;
   --laneta-bg: #F8FAFC;
+  /* Gyre x La Neta */
+  --gyre-red: #F20544;
+  --gyre-dark: #0D0D0D;
+  --gyre-deep: #011C26;
+  --gyre-muted: #F1F5F9;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -201,5 +211,73 @@
   }
   50% {
     background-position: 100% 50%;
+  }
+}
+
+/* Hero headline gradient shimmer (Gyre) */
+.hero-headline-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 5s ease-in-out infinite;
+}
+
+/* Partnership model: selectores con tema oscuro Gyre */
+#partnership-model select {
+  appearance: none;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #F1F5F9 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23F1F5F9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.75rem center !important;
+  background-size: 1.25rem !important;
+  padding-right: 2.5rem !important;
+}
+#partnership-model select:hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+#partnership-model select:focus {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+#partnership-model select option {
+  background-color: #0D0D0D;
+  color: #F1F5F9;
+}
+#partnership-model select option:checked {
+  background-color: #F20544;
+  color: #000;
+}
+#partnership-model input[type="date"] {
+  color-scheme: dark;
+}
+#partnership-model {
+  color-scheme: dark;
+}
+
+/* FAQ Gyre: acordeón profesional */
+#faq .faq-gyre-trigger {
+  outline: none;
+}
+#faq .faq-gyre-trigger:focus-visible {
+  box-shadow: 0 0 0 2px var(--gyre-red);
+}
+#faq .faq-gyre-content[data-state="open"] {
+  animation: faq-gyre-open 0.25s ease-out;
+}
+#faq .faq-gyre-content[data-state="closed"] {
+  animation: faq-gyre-close 0.2s ease-out;
+}
+@keyframes faq-gyre-open {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes faq-gyre-close {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }

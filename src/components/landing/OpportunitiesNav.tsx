@@ -39,6 +39,15 @@ const OPPORTUNITIES = [
     comingSoon: true,
   },
   {
+    id: "gyre",
+    name: "Gyre",
+    href: "/opportunities/gyre",
+    icon: "gyre",
+    color: "from-gyre-red to-laneta-pink",
+    bgColor: "bg-gyre-red/10",
+    comingSoon: false,
+  },
+  {
     id: "pinterest",
     name: "Pinterest",
     href: "/opportunities/pinterest",
@@ -97,6 +106,18 @@ function OpportunityIcon({
       return (
         <div className={getContainerClass()}>
           <FaPinterestP className={isCompact ? "size-5 text-white" : iconClass} />
+        </div>
+      );
+    case "gyre":
+      return (
+        <div className={getContainerClass("bg-white/90") + " p-1.5"}>
+          <Image
+            src="https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Gyre-Logo.png"
+            alt="Gyre"
+            width={isCompact ? 28 : 32}
+            height={isCompact ? 28 : 32}
+            className="h-full w-auto object-contain"
+          />
         </div>
       );
     default:

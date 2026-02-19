@@ -30,6 +30,14 @@ const OPPORTUNITIES = [
     gradient: "from-orange-500 to-red-500",
   },
   {
+    id: "gyre",
+    name: "Gyre",
+    href: "/opportunities/gyre",
+    description: "24/7 pre-recorded live streaming for YouTube. Opportunity for creators.",
+    icon: "gyre",
+    gradient: "from-gyre-red to-laneta-pink",
+  },
+  {
     id: "pinterest",
     name: "Pinterest",
     href: "/opportunities/pinterest",
@@ -56,6 +64,16 @@ function OpportunityIcon({ icon }: { icon: string }) {
       );
     case "tubi":
       return <SiTubi className="size-8 text-white" />;
+    case "gyre":
+      return (
+        <Image
+          src="https://la-neta-videos-ubicacion.s3.us-east-1.amazonaws.com/Gyre-Logo.png"
+          alt=""
+          width={64}
+          height={24}
+          className="h-6 w-auto object-contain brightness-0 invert"
+        />
+      );
     case "pinterest":
       return (
         <span className="text-2xl font-bold text-white">P</span>
