@@ -4,7 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 
-export function Footer() {
+interface FooterProps {
+  programTitle?: string;
+  navLinks?: { href: string; label: string }[];
+}
+
+export function Footer({ programTitle, navLinks }: FooterProps) {
   return (
     <footer className="border-t border-slate-200 bg-meta-dark text-white">
       <div className="container mx-auto max-w-6xl px-6 py-16">
@@ -24,49 +29,69 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 font-semibold">Company</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="https://www.laneta.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-meta-pink"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="https://www.facebook.com/LaNetaSiempre"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-meta-pink"
-                >
-                  Facebook
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="https://www.instagram.com/lanetasiempre/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-meta-pink"
-                >
-                  Instagram
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="https://www.linkedin.com/showcase/lanetasiempre"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-400 hover:text-meta-pink"
-                >
-                  LinkedIn
-                </Link>
-              </li>
-            </ul>
+            {programTitle && navLinks && navLinks.length > 0 ? (
+              <>
+                <h4 className="mb-4 font-semibold">{programTitle}</h4>
+                <ul className="space-y-2">
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
+                      <a
+                        href={link.href}
+                        className="text-slate-400 hover:text-meta-pink"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <>
+                <h4 className="mb-4 font-semibold">Company</h4>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      href="https://www.laneta.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-400 hover:text-meta-pink"
+                    >
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://www.facebook.com/LaNetaSiempre"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-400 hover:text-meta-pink"
+                    >
+                      Facebook
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://www.instagram.com/lanetasiempre/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-400 hover:text-meta-pink"
+                    >
+                      Instagram
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://www.linkedin.com/showcase/lanetasiempre"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-400 hover:text-meta-pink"
+                    >
+                      LinkedIn
+                    </Link>
+                  </li>
+                </ul>
+              </>
+            )}
           </div>
 
           <div>

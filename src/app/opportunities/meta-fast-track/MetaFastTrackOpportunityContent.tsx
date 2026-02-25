@@ -3,21 +3,22 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
-  HeroSection,
   Header,
-  WhyContactedSection,
-  MetaOpportunitySectionPart1,
-  MetaOpportunitySectionPart2,
+  FAST_TRACK_NAV_LINKS,
   FAQSection,
   ContactForm,
   LaNetaSection,
   Footer,
   ConnectOpportunitiesModal,
   ConnectOpportunitiesToast,
-  DEFAULT_NAV_LINKS,
 } from "@/components/landing";
+import { HeroSectionMetaFastTrack } from "./HeroSectionMetaFastTrack";
+import { MetaOpportunitySectionPart1MetaFastTrack } from "./MetaOpportunitySectionPart1MetaFastTrack";
+import { HowItWorksMetaFastTrack } from "./HowItWorksMetaFastTrack";
+import { MetaOpportunitySectionPart2MetaFastTrack } from "./MetaOpportunitySectionPart2MetaFastTrack";
+import { WhyContactedSectionMetaFastTrack } from "./WhyContactedSectionMetaFastTrack";
 
-export function MetaOpportunityContent() {
+export function MetaFastTrackOpportunityContent() {
   const searchParams = useSearchParams();
   const [showConnectModal, setShowConnectModal] = useState(false);
 
@@ -29,18 +30,23 @@ export function MetaOpportunityContent() {
 
   return (
     <div className="relative min-h-screen w-full min-w-0 overflow-x-hidden bg-white">
-      <Header onOpenConnectModal={() => setShowConnectModal(true)} />
+      <Header
+        onOpenConnectModal={() => setShowConnectModal(true)}
+        navLinks={FAST_TRACK_NAV_LINKS}
+        applyButtonLabel="Apply Now"
+      />
       <main className="w-full min-w-0 overflow-x-hidden">
-        <HeroSection onOpenConnectModal={() => setShowConnectModal(true)} />
-        <MetaOpportunitySectionPart1 />
-        <WhyContactedSection />
-        <MetaOpportunitySectionPart2 />
+        <HeroSectionMetaFastTrack onOpenConnectModal={() => setShowConnectModal(true)} />
+        <MetaOpportunitySectionPart1MetaFastTrack />
+        <WhyContactedSectionMetaFastTrack />
+        <HowItWorksMetaFastTrack />
+        <MetaOpportunitySectionPart2MetaFastTrack />
         <FAQSection />
         <ContactForm />
         <LaNetaSection />
         <Footer
-          programTitle="Meta Breakthrough Bonus Program"
-          navLinks={DEFAULT_NAV_LINKS}
+          programTitle="Meta Fast Track Creator Program"
+          navLinks={FAST_TRACK_NAV_LINKS}
         />
       </main>
       <ConnectOpportunitiesModal
@@ -56,3 +62,4 @@ export function MetaOpportunityContent() {
     </div>
   );
 }
+

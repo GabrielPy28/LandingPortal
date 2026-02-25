@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { FaMeta } from "react-icons/fa6";
 
 interface PageLoadAnimationProps {
   children: React.ReactNode;
@@ -172,26 +173,31 @@ export function PageLoadAnimation({ children }: PageLoadAnimationProps) {
           />
         </div>
 
-        {/* Logo - La Neta */}
+        {/* Logo - La Neta × Meta (Fast Track) */}
         <div
           ref={logoRef}
-          className="relative z-10 flex flex-col items-center gap-4"
+          className="relative z-10 flex flex-col items-center gap-5"
         >
-          <div className="drop-shadow-2xl">
+          <div className="flex items-center gap-4 drop-shadow-2xl sm:gap-6">
             <Image
               src="/images/new_logo.png"
-              alt="La Neta - Creative Flow"
-              width={280}
-              height={280}
-              className="h-auto w-64 sm:w-72 md:w-80"
+              alt="La Neta"
+              width={120}
+              height={120}
+              className="h-auto w-24 sm:w-28 md:w-32"
               priority
             />
+            <span className="text-3xl font-bold text-white sm:text-4xl">
+              ×
+            </span>
+            <FaMeta className="size-14 text-meta-blue sm:size-16 md:size-20" />
           </div>
           <p className="text-center text-lg font-medium tracking-wide text-white/90 sm:text-xl">
-            META × La Neta
+            La Neta & Meta
           </p>
           <p className="max-w-xs text-center text-sm text-white/70">
-            Your creative flow meets new opportunities
+            Meta Fast Track Creator Program for short-form creators ready to
+            scale with La Neta.
           </p>
         </div>
       </div>

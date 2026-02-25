@@ -16,7 +16,7 @@ import { ExternalLink, Sparkles } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const META_APPLY_URL =
-  "https://www.facebook.com/creator_programs/signup?referral_code=RJDWEF&id=1";
+  "https://www.facebook.com/creator_programs/signup?referral_code=laneta";
 
 const FAQ_ITEMS = [
   {

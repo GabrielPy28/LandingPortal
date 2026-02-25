@@ -14,17 +14,57 @@ import {
   TrendingUp,
   Sparkles,
   BarChart3,
-  Quote,
-  ArrowRight,
   CheckCircle2,
   QrCode,
   X,
+  ClipboardList,
+  Clock,
+  Settings,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const META_APPLY_URL =
   "https://www.facebook.com/creator_programs/signup?referral_code=laneta";
+
+const JOURNEY_STEPS = [
+  {
+    number: "01",
+    phase: "Apply",
+    time: "Day 0",
+    title: "Simple application",
+    body: "Link your Instagram/TikTok/YouTube, share your Facebook profile. Most creators complete it in under 10 minutes.",
+    icon: ClipboardList,
+    gradient: "from-meta-purple to-meta-blue",
+  },
+  {
+    number: "02",
+    phase: "Acceptance",
+    time: "24-48 hours",
+    title: "Fast response",
+    body: "Meta will review your application and give you a response within 24-48 hours.",
+    icon: Clock,
+    gradient: "from-meta-blue to-meta-pink",
+  },
+  {
+    number: "03",
+    phase: "Onboard",
+    time: "Week 1",
+    title: "Monetization setup",
+    body: "Complete Facebook Content Monetization. You're officially in—start posting.",
+    icon: Settings,
+    gradient: "from-meta-pink to-meta-purple",
+  },
+  {
+    number: "04",
+    phase: "Earn",
+    time: "3 Months",
+    title: "Guaranteed payouts* + ongoing revenue",
+    body: "Earn $1,000–$3,000/mo in Fast Track payouts* plus Reels monetization revenue. Post 15 videos across 10+ days each month to unlock your full payout.",
+    icon: DollarSign,
+    gradient: "from-meta-purple to-meta-pink",
+  },
+];
 
 const BENEFITS = [
   {
@@ -35,9 +75,9 @@ const BENEFITS = [
   },
   {
     icon: Zap,
-    title: "Breakthrough Bonus",
-    metric: "Up to $5,000",
-    description: "In your first 90 days.",
+    title: "$1,000–$3,000/mo",
+    metric: "Guaranteed Payouts*",
+    description: "Paid monthly for 3 months. Terms apply.",
   },
   {
     icon: Repeat,
@@ -65,57 +105,28 @@ const BENEFITS = [
   },
 ];
 
-const SUCCESS_TIMELINE = [
-  {
-    phase: "Apply",
-    time: "Day 0",
-    title: "Simple application",
-    description: "Link your Instagram/TikTok/YouTube, share your Facebook profile. Most creators complete it in under 10 minutes.",
-  },
-  {
-    phase: "Acceptance",
-    time: "24-48 hours",
-    title: "Fast response",
-    description: "Meta will review your application and give you a response within 24-48n hours",
-  },
-  {
-    phase: "Onboard",
-    time: "Week 1",
-    title: "Monetization setup",
-    description: "Complete Facebook Content Monetization. You're officially in—start posting.",
-  },
-  {
-    phase: "Earn",
-    time: "First 90 days",
-    title: "Bonus + ongoing revenue",
-    description: "Work toward up to $5,000 in Breakthrough Bonuses plus Reels monetization.",
-  },
-];
-
-const KEY_METRICS = [
-  { value: "$5,000", label: "Max bonus (first 90 days)", sub: "Performance-driven" },
-  { value: "24-48h", label: "Response time", sub: "Quick decision" },
-  { value: "4", label: "Content types", sub: "Reels, videos, photos, text" },
-  { value: "2025-26", label: "Program active", sub: "Try it" },
-];
-
 const ELIGIBILITY = [
   "Reside in the United States",
   "Be at least 18 years old",
   "100K+ followers on TikTok, YouTube, or Instagram",
   "Professional Instagram + Facebook Page",
   "Content aligning with Meta's policies",
+  "No Facebook Reels posted in the last 6 months",
+  "Not enrolled in another Facebook monetization program",
 ];
 
-export function MetaOpportunitySection() {
+const STEPS_OFFSET_BREAKPOINT = 560;
+
+export function MetaOpportunitySectionPart2MetaFastTrack() {
   const [showQrModal, setShowQrModal] = useState(false);
+  const [allowOffsetX, setAllowOffsetX] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const storyRef = useRef<HTMLDivElement>(null);
-  const metricsRef = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<HTMLDivElement>(null);
   const benefitsRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const journeyHeaderRef = useRef<HTMLDivElement>(null);
+  const journeyStepsRef = useRef<HTMLDivElement>(null);
+  const journeyProgressRef = useRef<HTMLDivElement>(null);
+  const journeyCtaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -132,64 +143,74 @@ export function MetaOpportunitySection() {
   }, [showQrModal]);
 
   useEffect(() => {
+    const updateOffset = () =>
+      setAllowOffsetX(window.innerWidth >= STEPS_OFFSET_BREAKPOINT);
+    updateOffset();
+    window.addEventListener("resize", updateOffset);
+    return () => window.removeEventListener("resize", updateOffset);
+  }, []);
+
+  useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 50 },
+        journeyHeaderRef.current,
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.7,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
+            trigger: journeyHeaderRef.current,
+            start: "top 88%",
             toggleActions: "play none none reverse",
           },
         }
       );
 
+      const stepCards = journeyStepsRef.current?.children ?? [];
       gsap.fromTo(
-        storyRef.current,
-        { opacity: 0, y: 30 },
+        stepCards,
+        { opacity: 0, y: 32 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: storyRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        metricsRef.current?.children ?? [],
-        { opacity: 0, scale: 0.9 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: metricsRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        timelineRef.current?.children ?? [],
-        { opacity: 0, x: -30 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.6,
+          duration: 0.55,
           stagger: 0.12,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: timelineRef.current,
+            trigger: journeyStepsRef.current,
             start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        journeyProgressRef.current,
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          duration: 0.9,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            trigger: journeyProgressRef.current,
+            start: "top 92%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        journeyCtaRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          scrollTrigger: {
+            trigger: journeyCtaRef.current,
+            start: "top 92%",
             toggleActions: "play none none reverse",
           },
         }
@@ -228,128 +249,105 @@ export function MetaOpportunitySection() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [allowOffsetX]);
 
   return (
     <section
       ref={sectionRef}
-      id="meta-opportunity"
+      id="meta-opportunity-benefits"
       className="scroll-mt-20 bg-meta-dark py-24 text-white"
     >
       <div className="container mx-auto max-w-6xl px-6">
-        {/* Hero headline */}
-        <h2
-          ref={titleRef}
-          className="mb-4 text-center text-3xl font-bold sm:text-4xl md:text-5xl"
+        {/* Your Journey to Monetization - Elevn-style (Fast Track only) */}
+        <div
+          ref={journeyHeaderRef}
+          id="journey-to-monetization"
+          className="mb-10 text-center max-[400px]:mb-8 sm:mb-12 md:mb-14"
         >
-          Meta Breakthrough Bonus Program
-        </h2>
-        <p className="mx-auto mb-4 max-w-2xl text-center text-lg text-slate-300">
-          Your fast track to monetization on Facebook & Instagram
-        </p>
-        <div className="mb-20 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-meta-pink/50 bg-meta-pink/10 px-5 py-2 text-meta-pink">
-            <Zap className="size-4" />
-            <span className="font-semibold">Up to $5,000 in your first 90 days</span>
-          </div>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-meta-pink max-[400px]:text-[10px]">
+            The path
+          </p>
+          <h2 className="mb-4 text-2xl font-bold text-white max-[400px]:text-xl sm:text-3xl md:text-4xl lg:text-5xl">
+            Your Journey to Monetization
+          </h2>
+          <p className="mx-auto max-w-2xl text-slate-400 max-[400px]:text-sm md:text-base">
+            From application to payout in four clear steps. No guesswork—just a
+            straightforward path to earning with Meta.
+          </p>
         </div>
 
-        {/* Success Story - Narrative */}
         <div
-          ref={storyRef}
-          className="mb-20 overflow-hidden rounded-2xl border border-meta-purple/30 bg-gradient-to-br from-meta-purple/20 to-meta-pink/10 p-8 md:p-12"
+          ref={journeyStepsRef}
+          className="mx-auto mb-12 max-w-4xl space-y-4 md:max-w-5xl md:space-y-5 lg:max-w-6xl lg:mb-16 xl:max-w-[1400px]"
+          style={{ perspective: "1000px" }}
         >
-          <div className="mb-6 flex items-center gap-2">
-            <Quote className="size-8 text-meta-pink" />
-            <span className="text-sm font-semibold uppercase tracking-wider text-meta-pink">
-              Success Path
-            </span>
-          </div>
-          <h3 className="mb-6 text-2xl font-bold sm:text-3xl">
-            From One Platform to Multiple Revenue Streams
-          </h3>
-          <div className="space-y-6 text-slate-200">
-            <p className="text-lg leading-relaxed">
-              Creators with 100K+ followers on Instagram, TikTok or YouTube are discovering
-              they don&apos;t need to create new content to start earning. They
-              apply, get accepted within 24–48 hours, and begin reposting their
-              best-performing Reels to Facebook.
-            </p>
-            <p className="text-lg leading-relaxed">
-              <strong className="text-white">The result?</strong> A new audience
-              on Meta, immediate access to Facebook Content Monetization, and the
-              chance to earn up to $5,000 in Breakthrough Bonuses during their
-              first 90 days—all while continuing to post on their existing
-              platforms.
-            </p>
-            <p className="text-lg leading-relaxed">
-              Meta invests directly in your creativity. No brand deals, no
-              agencies in the middle. Just you, your content, and a transparent
-              path to turning engagement into income.
-            </p>
-          </div>
-        </div>
-
-        {/* Key Metrics & Insights 
-        <h3 className="mb-8 text-center text-2xl font-semibold text-meta-blue">
-          By the Numbers
-        </h3>
-        <div
-          ref={metricsRef}
-          className="mb-20 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {KEY_METRICS.map((metric, i) => (
-            <Card
-              key={i}
-              className="border-meta-blue/30 bg-meta-dark/80 backdrop-blur transition-all hover:border-meta-pink/50 hover:shadow-lg hover:shadow-meta-purple/20"
+          {JOURNEY_STEPS.map((step, i) => (
+            <div
+              key={step.number}
+              className="flex flex-col overflow-hidden rounded-xl border border-meta-purple/25 bg-meta-dark/80 shadow-lg transition-all hover:border-meta-pink/30 hover:shadow-[0_8px_32px_rgba(102,65,237,0.15)] md:flex-row md:rounded-2xl"
+              style={allowOffsetX ? { marginLeft: i * 24 } : undefined}
             >
-              <CardContent className="p-6 text-center">
-                <p className="text-3xl font-bold text-meta-pink md:text-4xl">
-                  {metric.value}
+              <div
+                className={`flex w-full flex-row items-center justify-center gap-4 bg-gradient-to-b ${step.gradient} py-4 text-white max-[400px]:py-3 max-[650px]:py-5 md:w-28 md:shrink-0 md:flex-col md:gap-2 md:py-9`}
+              >
+                <span className="text-2xl font-bold max-[400px]:text-xl max-[650px]:text-3xl md:text-4xl">
+                  {step.number}
+                </span>
+                <step.icon
+                  className="size-6 opacity-90 max-[400px]:size-5 md:size-8"
+                  aria-hidden
+                />
+              </div>
+              <div className="flex-1 px-4 py-4 max-[400px]:px-3 max-[400px]:py-3 max-[650px]:px-5 max-[650px]:py-5 md:px-6 md:py-6">
+                <div className="mb-1 flex flex-wrap items-center gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-meta-blue">
+                    {step.phase}
+                  </span>
+                  <span className="text-sm text-slate-500">• {step.time}</span>
+                </div>
+                <h3 className="mb-2 font-semibold text-white md:text-lg">
+                  {step.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-slate-400 md:text-base">
+                  {step.body}
                 </p>
-                <p className="mt-1 font-semibold text-white">{metric.label}</p>
-                <p className="text-sm text-slate-400">{metric.sub}</p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
-        */}
-        {/* Your Journey - Timeline */}
-        <h3 className="mb-8 text-center text-2xl font-semibold">
-          Your Journey to Monetization
-        </h3>
+
         <div
-          ref={timelineRef}
-          id="how-it-works"
-          className="mb-20"
+          className="mx-auto mb-10 h-1 w-full max-w-4xl overflow-hidden rounded-full bg-white/10 md:max-w-5xl lg:max-w-6xl"
+          aria-hidden
         >
-          <div className="space-y-6">
-            {SUCCESS_TIMELINE.map((step, i) => (
-              <div
-                key={i}
-                className="flex gap-6 rounded-xl border border-meta-purple/20 bg-meta-purple/10 p-6 transition-colors hover:bg-meta-purple/20"
-              >
-                <div className="flex shrink-0">
-                  <span className="flex size-12 items-center justify-center rounded-full bg-meta-pink font-bold">
-                    {i + 1}
-                  </span>
-                </div>
-                <div className="flex-1">
-                  <div className="mb-1 flex items-center gap-3">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-meta-blue">
-                      {step.phase}
-                    </span>
-                    <span className="text-sm text-slate-400">• {step.time}</span>
-                  </div>
-                  <h4 className="mb-2 font-semibold text-white">{step.title}</h4>
-                  <p className="text-slate-300">{step.description}</p>
-                </div>
-                {i <= SUCCESS_TIMELINE.length - 1 && (
-                  <ArrowRight className="hidden shrink-0 text-meta-purple/50 sm:block" />
-                )}
-              </div>
-            ))}
-          </div>
+          <div
+            ref={journeyProgressRef}
+            className="h-full w-full rounded-full bg-gradient-to-r from-meta-purple via-meta-pink to-meta-blue"
+            style={{ transformOrigin: "left" }}
+          />
+        </div>
+
+        <div
+          ref={journeyCtaRef}
+          className="mb-20 flex flex-col items-center gap-4 text-center"
+        >
+          <Button
+            asChild
+            size="lg"
+            className="w-full max-w-sm bg-gradient-to-r from-meta-purple to-meta-pink px-8 py-6 text-base font-semibold shadow-[0_4px_24px_rgba(102,65,237,0.3)] transition hover:opacity-95 sm:w-auto"
+          >
+            <Link
+              href={META_APPLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Apply to the Program
+            </Link>
+          </Button>
+          <p className="max-w-xs text-sm text-slate-500">
+            Join the program to get access. Applications are completed directly
+            on Facebook.
+          </p>
         </div>
 
         {/* Benefits Grid */}
@@ -414,11 +412,11 @@ export function MetaOpportunitySection() {
           </div>
 
           <div className="flex flex-col items-center gap-6">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col items-center gap-4 sm:flex-row">
               <Button
                 asChild
                 size="lg"
-                className="w-full bg-meta-pink px-10 py-6 text-lg font-semibold hover:bg-meta-pink/90 sm:w-auto"
+                className="w-full max-w-xs bg-meta-pink px-10 py-6 text-lg font-semibold hover:bg-meta-pink/90 sm:w-auto"
               >
                 <Link
                   href={META_APPLY_URL}
@@ -430,15 +428,24 @@ export function MetaOpportunitySection() {
               </Button>
               <button
                 onClick={() => setShowQrModal(true)}
-                className="flex size-14 shrink-0 items-center justify-center rounded-lg border border-meta-purple/50 bg-meta-dark/50 text-white transition-colors hover:bg-meta-purple/30"
+                className="mt-1 flex size-14 shrink-0 items-center justify-center rounded-lg border border-meta-purple/50 bg-meta-dark/50 text-white transition-colors hover:bg-meta-purple/30 sm:mt-0"
                 aria-label="Scan QR code to apply"
               >
                 <QrCode className="size-7" />
               </button>
             </div>
-            <p className="max-w-xs text-center text-sm text-slate-400">
-              Program active throughout 2025 and 2026. Applications are
-              completed directly on Facebook.
+            <p className="max-w-xl space-y-2 text-center text-sm text-slate-400">
+              <span className="block">
+                Active 2026. Applications completed directly on Facebook.
+              </span>
+              <span className="block text-xs leading-snug text-slate-500">
+                *Guaranteed payouts are subject to meeting program posting
+                requirements: 15 original or reposted videos published as
+                Facebook Reels, distributed across a minimum of 10 distinct
+                calendar days per month. Payout tier is determined by follower
+                count at time of acceptance. Full terms available at
+                application.
+              </span>
             </p>
           </div>
         </div>
@@ -466,15 +473,16 @@ export function MetaOpportunitySection() {
                 </p>
                 <div className="rounded-xl border-4 border-white bg-white p-4">
                   <Image
-                    src="/images/QR.png"
-                    alt="Scan to apply - Meta Breakthrough Bonus Program"
+                    src="/images/QRCode.png"
+                    alt="Scan to apply - Meta Fast Track Creator Program"
                     width={220}
                     height={220}
                     className="size-52 object-contain sm:size-64"
                   />
                 </div>
                 <p className="text-center text-sm text-slate-400">
-                  Program active 2025–2026
+                  *Guaranteed payouts require meeting monthly posting
+                  requirements. Terms apply.
                 </p>
               </div>
             </div>

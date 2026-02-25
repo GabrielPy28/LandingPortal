@@ -23,34 +23,33 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 const META_APPLY_URL =
-  "https://www.facebook.com/creator_programs/signup?referral_code=RJDWEF&id=1";
-
+  "https://www.facebook.com/creator_programs/signup?referral_code=laneta";
 
 const SUCCESS_TIMELINE = [
-    {
-      phase: "Apply",
-      time: "Day 0",
-      title: "Simple application",
-      description: "Link your Instagram/TikTok/YouTube, share your Facebook profile. Most creators complete it in under 10 minutes.",
-    },
-    {
-      phase: "Acceptance",
-      time: "24-48 hours",
-      title: "Fast response",
-      description: "Meta will review your application and give you a response within 24-48n hours",
-    },
-    {
-      phase: "Onboard",
-      time: "Week 1",
-      title: "Monetization setup",
-      description: "Complete Facebook Content Monetization. You're officially in—start posting.",
-    },
-    {
-      phase: "Earn",
-      time: "First 90 days",
-      title: "Bonus + ongoing revenue",
-      description: "Work toward up to $5,000 in Breakthrough Bonuses plus Reels monetization.",
-    },
+  {
+    phase: "Apply",
+    time: "Day 0",
+    title: "Simple application",
+    description: "Link your Instagram/TikTok/YouTube, share your Facebook profile. Most creators complete it in under 10 minutes.",
+  },
+  {
+    phase: "Acceptance",
+    time: "24-48 hours",
+    title: "Fast response",
+    description: "Meta will review your application and give you a response within 24-48 hours.",
+  },
+  {
+    phase: "Onboard",
+    time: "Week 1",
+    title: "Monetization setup",
+    description: "Complete Facebook Content Monetization. You're officially in—start posting.",
+  },
+  {
+    phase: "Earn",
+    time: "First 90 days",
+    title: "Bonus + ongoing revenue",
+    description: "Work toward up to $5,000 in Breakthrough Bonuses plus Reels monetization.",
+  },
 ];
 
 const BENEFITS = [
@@ -98,6 +97,8 @@ const ELIGIBILITY = [
   "100K+ followers on TikTok, YouTube, or Instagram",
   "Professional Instagram + Facebook Page",
   "Content aligning with Meta's policies",
+  "No Facebook Reels posted in the last 6 months",
+  "Not enrolled in another Facebook monetization program",
 ];
 
 export function MetaOpportunitySectionPart2() {
@@ -166,7 +167,7 @@ export function MetaOpportunitySectionPart2() {
     >
       <div className="container mx-auto max-w-6xl px-6">
 
-        {/* Your Journey - Timeline */}
+        {/* Your Journey - Timeline (Breakthrough) */}
         <h3 className="mb-8 text-center text-2xl font-semibold">
           Your Journey to Monetization
         </h3>
@@ -203,7 +204,6 @@ export function MetaOpportunitySectionPart2() {
             ))}
           </div>
         </div>
-
 
         {/* Benefits Grid */}
         <h3 className="mb-8 text-center text-2xl font-semibold text-meta-blue">
@@ -290,8 +290,9 @@ export function MetaOpportunitySectionPart2() {
               </button>
             </div>
             <p className="max-w-xs text-center text-sm text-slate-400">
-              Program active throughout 2025 and 2026. Applications are
-              completed directly on Facebook.
+              Program active throughout 2026. Applications are completed
+              directly on Facebook. *Guaranteed payouts require meeting
+              monthly posting requirements. Terms apply.
             </p>
           </div>
         </div>

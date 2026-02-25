@@ -6,10 +6,11 @@ import { ArrowRight } from "lucide-react";
 
 const OPPORTUNITIES = [
   {
-    id: "meta",
-    name: "Meta Breakthrough Bonus",
-    href: "/opportunities/meta",
-    description: "Earn up to $5,000 in bonuses during your first 90 days.",
+    id: "meta-fast-track",
+    name: "Meta Fast Track Creator Program",
+    href: "/opportunities/meta-fast-track",
+    description:
+      "Earn $1,000–$3,000/mo in guaranteed payouts by reposting your content to Facebook.",
     icon: "meta",
     gradient: "from-meta-purple to-meta-pink",
   },

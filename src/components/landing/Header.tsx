@@ -7,9 +7,9 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const META_APPLY_URL =
-  "https://www.facebook.com/creator_programs/signup?referral_code=RJDWEF&id=1";
+  "https://www.facebook.com/creator_programs/signup?referral_code=laneta";
 
-const NAV_LINKS = [
+export const DEFAULT_NAV_LINKS = [
   { href: "#meta-opportunity", label: "Program" },
   { href: "#why-contacted", label: "Why Contacted" },
   { href: "#meta-opportunity-benefits", label: "Benefits" },
@@ -18,19 +18,82 @@ const NAV_LINKS = [
   { href: "#la-neta", label: "La Neta" },
 ];
 
+export const FAST_TRACK_NAV_LINKS = [
+  { href: "#meta-opportunity", label: "Program" },
+  { href: "#why-contacted", label: "Why Contacted" },
+  { href: "#how-it-works-payout", label: "How It Works" },
+  { href: "#meta-opportunity-benefits", label: "Benefits" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#contact", label: "Contact" },
+  { href: "#la-neta", label: "La Neta" },
+];
+
 interface HeaderProps {
   onOpenConnectModal?: () => void;
+  navLinks?: { href: string; label: string }[];
+  applyButtonLabel?: string;
 }
 
-export function Header({ onOpenConnectModal }: HeaderProps) {
+export function Header({
+  onOpenConnectModal,
+  navLinks = DEFAULT_NAV_LINKS,
+  applyButtonLabel = "Try it",
+}: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState<string>("");
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const sectionIds = navLinks
+      .filter((link) => link.href.startsWith("#"))
+      .map((link) => link.href.slice(1));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let bestEntry: IntersectionObserverEntry | null = null;
+
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
+            bestEntry = entry;
+          }
+        }
+
+        if (bestEntry?.target) {
+          const id = bestEntry.target.id;
+          const match = navLinks.find((link) => link.href === `#${id}`);
+          if (match) {
+            setActiveHash((prev) =>
+              prev === match.href ? prev : match.href
+            );
+          }
+        }
+      },
+      {
+        threshold: 0.4,
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    // Fallback inicial por si el observer tarda en disparar
+    if (!activeHash && navLinks.length > 0) {
+      setActiveHash(navLinks[0].href);
+    }
+
+    return () => observer.disconnect();
+  }, [navLinks, activeHash]);
 
   return (
     <header
@@ -51,12 +114,16 @@ export function Header({ onOpenConnectModal }: HeaderProps) {
           <span className="font-bold text-white">La Neta</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
-          {NAV_LINKS.map((link) => (
+        <nav className="hidden items-center gap-6 min-[986px]:flex">
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
+              className={`text-sm font-medium transition-colors ${
+                activeHash === link.href
+                  ? "text-meta-pink"
+                  : "text-slate-300 hover:text-white"
+              }`}
             >
               {link.label}
             </a>
@@ -82,13 +149,13 @@ export function Header({ onOpenConnectModal }: HeaderProps) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Try it
+              {applyButtonLabel}
             </Link>
           </Button>
         </nav>
 
         <button
-          className="flex size-10 min-w-10 shrink-0 items-center justify-center rounded-lg text-white md:hidden"
+          className="flex size-10 min-w-10 shrink-0 items-center justify-center rounded-lg text-white min-[986px]:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -97,13 +164,17 @@ export function Header({ onOpenConnectModal }: HeaderProps) {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="border-t border-slate-700 bg-meta-dark/98 px-6 py-4 md:hidden">
+        <div className="border-t border-slate-700 bg-meta-dark/98 px-6 py-4 min-[986px]:hidden">
           <nav className="flex flex-col gap-4">
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-slate-300 hover:text-white"
+                className={`text-sm font-medium transition-colors ${
+                  activeHash === link.href
+                    ? "text-meta-pink"
+                    : "text-slate-300 hover:text-white"
+                }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
@@ -131,7 +202,7 @@ export function Header({ onOpenConnectModal }: HeaderProps) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Try it
+                {applyButtonLabel}
               </Link>
             </Button>
           </nav>

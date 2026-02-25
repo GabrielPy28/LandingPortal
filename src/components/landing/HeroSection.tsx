@@ -1,14 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { Button } from "@/components/ui/button";
-import { Play, Sparkles } from "lucide-react";
+import { Play, Sparkles, AlertTriangle } from "lucide-react";
 
 const META_APPLY_URL =
-  "https://www.facebook.com/creator_programs/signup?referral_code=RJDWEF&id=1";
+  "https://www.facebook.com/creator_programs/signup?referral_code=laneta";
+
+// Adjust this date if the program window changes
+const BREAKTHROUGH_END_DATE = new Date("2026-03-27T00:00:00Z");
 
 interface HeroSectionProps {
   onOpenConnectModal?: () => void;
@@ -23,6 +26,8 @@ export function HeroSection({ onOpenConnectModal }: HeroSectionProps) {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
+
+  const [daysRemaining, setDaysRemaining] = useState<number | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -54,6 +59,19 @@ export function HeroSection({ onOpenConnectModal }: HeroSectionProps) {
     }, heroRef);
 
     return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    const updateDaysRemaining = () => {
+      const now = new Date();
+      const diffMs = BREAKTHROUGH_END_DATE.getTime() - now.getTime();
+      const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      setDaysRemaining(days > 0 ? days : 0);
+    };
+
+    updateDaysRemaining();
+    const id = setInterval(updateDaysRemaining, 1000 * 60 * 60);
+    return () => clearInterval(id);
   }, []);
 
   return (
@@ -99,12 +117,30 @@ export function HeroSection({ onOpenConnectModal }: HeroSectionProps) {
           <span className="text-xl font-bold text-white">La Neta</span>
         </div>
 
-        <div
-          ref={badgeRef}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-meta-pink/50 bg-meta-pink/10 px-4 py-2 text-sm text-meta-pink"
-        >
-          <Sparkles className="size-4" />
-          Exclusive Creator Opportunity
+        <div className="mb-6 flex flex-col items-center gap-2">
+          <div
+            ref={badgeRef}
+            className="inline-flex items-center gap-2 rounded-full border border-meta-pink/50 bg-meta-pink/10 px-4 py-2 text-sm text-meta-pink"
+          >
+            <Sparkles className="size-4" />
+            Exclusive Creator Opportunity
+          </div>
+          {daysRemaining !== null && (
+            <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-3 py-1 text-xs font-medium text-yellow-200">
+              <AlertTriangle className="size-3.5" />
+              {daysRemaining > 0 ? (
+                <span>
+                  This opportunity will be available for{" "}
+                  <span className="font-semibold">
+                    {daysRemaining} {daysRemaining === 1 ? "day" : "days"}
+                  </span>
+                  .
+                </span>
+              ) : (
+                <span>This opportunity is scheduled to close.</span>
+              )}
+            </div>
+          )}
         </div>
 
         <h1

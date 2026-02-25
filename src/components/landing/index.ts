@@ -1,6 +1,6 @@
 export { HeroSection } from "./HeroSection";
 export { PageLoadAnimation } from "./PageLoadAnimation";
-export { Header } from "./Header";
+export { Header, FAST_TRACK_NAV_LINKS, DEFAULT_NAV_LINKS } from "./Header";
 export { ConnectOpportunitiesModal } from "./ConnectOpportunitiesModal";
 export { ConnectOpportunitiesToast } from "./ConnectOpportunitiesToast";
 export { LaNetaSection } from "./LaNetaSection";
