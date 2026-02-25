@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title:
-    "Meta Fast Track Creator Program | La Neta — Guaranteed Monthly Payouts for Creators",
+    "Meta Fast Track Creator Program | La Neta — Guaranteed* Monthly Payouts for Creators",
   description:
-    "La Neta is Meta's official partner for the Fast Track Creator Program. Creators with 100K+ followers earn $1,000–$3,000/mo in guaranteed payouts by cross-posting existing content to Facebook. Apply now.",
+    "La Neta is Meta's official partner for the Fast Track Creator Program. Creators with 100K+ followers earn $1,000–$3,000/mo in guaranteed* payouts by cross-posting existing content to Facebook. Apply now.",
   openGraph: {
     title: "Meta Fast Track Creator Program | La Neta",
     description:
-      "Earn $1,000–$3,000/mo guaranteed. Repost your existing content to Facebook. 100K+ followers? Apply now.",
+      "Earn $1,000–$3,000/mo guaranteed*. Repost your existing content to Facebook. 100K+ followers? Apply now.",
     url: "/opportunities/meta-fast-track",
     type: "website",
     siteName: "La Neta",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Meta Fast Track Creator Program | La Neta",
     description:
-      "Earn $1,000–$3,000/mo guaranteed. Repost your existing content to Facebook. 100K+ followers? Apply now.",
+      "Earn $1,000–$3,000/mo guaranteed*. Repost your existing content to Facebook. 100K+ followers? Apply now.",
     images: ["/images/banner.jpg"],
   },
 };

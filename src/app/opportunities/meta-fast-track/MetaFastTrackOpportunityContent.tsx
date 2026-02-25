@@ -41,7 +41,7 @@ export function MetaFastTrackOpportunityContent() {
         <WhyContactedSectionMetaFastTrack />
         <HowItWorksMetaFastTrack />
         <MetaOpportunitySectionPart2MetaFastTrack />
-        <FAQSection />
+        <FAQSection program="fast-track" />
         <ContactForm />
         <LaNetaSection />
         <Footer

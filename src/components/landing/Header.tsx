@@ -49,6 +49,24 @@ export function Header({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Sync active nav with URL hash when user clicks a nav link
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const hashLinks = navLinks.filter((link) => link.href.startsWith("#"));
+
+    const applyHash = () => {
+      const hash = window.location.hash || "";
+      const match = hashLinks.find((link) => link.href === hash);
+      if (match) setActiveHash(match.href);
+    };
+
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, [navLinks]);
+
+  // Scroll spy: which section is most in view (prefer section whose top is in upper viewport)
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -56,44 +74,42 @@ export function Header({
       .filter((link) => link.href.startsWith("#"))
       .map((link) => link.href.slice(1));
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let bestEntry: IntersectionObserverEntry | null = null;
+    const getVisibleSection = (): string | null => {
+      const headerOffset = 120;
+      const viewportMid = headerOffset + window.innerHeight / 2;
+      let best: { id: string; top: number } | null = null;
 
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
-            bestEntry = entry;
-          }
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        const top = rect.top;
+        const bottom = rect.bottom;
+        if (top > window.innerHeight || bottom < headerOffset) continue;
+        const distanceFromTop = Math.abs(top - headerOffset);
+        if (!best || distanceFromTop < best.top) {
+          best = { id, top: distanceFromTop };
         }
-
-        if (bestEntry?.target) {
-          const id = bestEntry.target.id;
-          const match = navLinks.find((link) => link.href === `#${id}`);
-          if (match) {
-            setActiveHash((prev) =>
-              prev === match.href ? prev : match.href
-            );
-          }
-        }
-      },
-      {
-        threshold: 0.4,
       }
-    );
+      return best ? `#${best.id}` : null;
+    };
 
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    const onScroll = () => {
+      const href = getVisibleSection();
+      if (href) {
+        const match = navLinks.find((link) => link.href === href);
+        if (match) setActiveHash(match.href);
+      }
+    };
 
-    // Fallback inicial por si el observer tarda en disparar
-    if (!activeHash && navLinks.length > 0) {
-      setActiveHash(navLinks[0].href);
-    }
-
-    return () => observer.disconnect();
-  }, [navLinks, activeHash]);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [navLinks]);
 
   return (
     <header

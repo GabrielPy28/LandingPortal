@@ -73,7 +73,7 @@ export function MetaOpportunitySectionPart1MetaFastTrack() {
     <section
       ref={sectionRef}
       id="meta-opportunity"
-      className="scroll-mt-20 bg-meta-dark py-24 text-white"
+      className="scroll-mt-20 bg-meta-dark py-13 text-white"
     >
       <div className="container mx-auto max-w-6xl px-6">
         {/* Hero headline */}

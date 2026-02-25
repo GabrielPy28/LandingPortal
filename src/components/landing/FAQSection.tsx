@@ -18,6 +18,98 @@ gsap.registerPlugin(ScrollTrigger);
 const META_APPLY_URL =
   "https://www.facebook.com/creator_programs/signup?referral_code=laneta";
 
+/** Prepended only when program is Fast Track */
+const FAST_TRACK_FAQ_PREPEND = [  
+  {
+    q: "I applied to a previous Meta creator program and was rejected. Can I still join Fast Track?",
+    a: (
+      <>
+        Yes. Fast Track is a separate program with its own eligibility and
+        review. A rejection from another Meta program does not disqualify you.
+        If you meet Fast Track&apos;s requirements (100K+ followers, no Facebook
+        Reels in the last 6 months, not enrolled in another Facebook
+        monetization program), you can apply.
+      </>
+    ),
+  },
+  {
+    q: "I'm currently at 950k followers. If I hit 1 Million followers during Month 2 of the program, does my pay bump up from $1,000 to $3,000 for the remaining months? Or am I locked into the tier I started with?",
+    a: (
+      <>
+        You are locked into the tier you qualified for at the time of your
+        application. The guaranteed* payouts are determined by your linked
+        account&apos;s follower count the moment you are accepted into the Fast
+        Track program.
+      </>
+    ),
+  },
+  {
+    q: "If I post my 15 videos but get zero views, do I still get paid? Or is there a hidden view-count threshold?",
+    a: (
+      <>
+        Yes, you still get paid! The Fast Track program guarantees the bonus
+        payout strictly based on meeting the posting requirements (15 Reels
+        across 10+ separate days per month). There are no hidden performance or
+        view-count thresholds.
+      </>
+    ),
+  },
+  {
+    q: "I haven't really been 'active,' but I posted one random Reel 3 months ago just to test a feature. Does that one post disqualify me?",
+    a: (
+      <>
+        Yes. To be eligible, your account must have strictly{" "}
+        <span className="font-semibold text-meta-purple">zero</span> Facebook
+        Reels or videos published within the last 180 days (6 months).
+      </>
+    ),
+  },
+  {
+    q: "If I delete the 3 videos I posted last month, does that reset my 180-day clock so I can join?",
+    a: (
+      <>
+        No. Deleting a video does not erase the publishing activity from Meta&apos;s
+        backend systems. If a video was published to your page within the last
+        180 days, you will not qualify for the program.
+      </>
+    ),
+  },
+  {
+    q: "What exactly does 'boosted visibility' mean within this program?",
+    a: (
+      <>
+        As a Fast Track participant, Meta prioritizes your content with
+        increased reach in the Facebook feed. This helps your imported catalog
+        content find a new audience rapidly so you don&apos;t feel like you are
+        starting from scratch on a new platform.
+      </>
+    ),
+  },
+  {
+    q: "What happens in Month 4 when the program ends? Will my views drop off a cliff?",
+    a: (
+      <>
+        Month 4 is when you graduate! Entering the Fast Track program gives you
+        accelerated onboarding into standard Facebook Content Monetization
+        (FCM). Once your 3-month guaranteed* payouts end, you will continue
+        earning revenue organically through standard Reels monetization based on
+        the engaged audience you built during the program.
+      </>
+    ),
+  },
+  {
+    q: "Can I leave my current Meta bonus program to switch to this one? If I am technically already onboarded on another Meta program, can I still join Fast Track?",
+    a: (
+      <>
+        No. To be eligible for Fast Track, you must not be currently onboarded
+        to any other Facebook monetization program. This program is
+        specifically designed to welcome creators who are not yet monetizing on
+        Facebook.
+      </>
+    ),
+  },
+];
+
 const FAQ_ITEMS = [
   {
     q: "Can I meet all requirements and still not be approved?",
@@ -175,10 +267,23 @@ const FAQ_ITEMS = [
   },
 ];
 
-export function FAQSection() {
+export function FAQSection({
+  program = "breakthrough",
+}: {
+  program?: "breakthrough" | "fast-track";
+}) {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const accordionRef = useRef<HTMLDivElement>(null);
+
+  const items =
+    program === "fast-track"
+      ? [...FAST_TRACK_FAQ_PREPEND, ...FAQ_ITEMS]
+      : FAQ_ITEMS;
+  const subtitle =
+    program === "fast-track"
+      ? "Everything you need to know about the Meta Fast Track Creator Program"
+      : "Everything you need to know about the Meta Breakthrough Bonus Program";
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -233,14 +338,12 @@ export function FAQSection() {
           >
             Frequently Asked Questions
           </h2>
-          <p className="text-slate-600">
-            Everything you need to know about the Meta Breakthrough Bonus Program
-          </p>
+          <p className="text-slate-600">{subtitle}</p>
         </div>
 
         <div ref={accordionRef}>
           <Accordion type="single" collapsible className="w-full space-y-3">
-            {FAQ_ITEMS.map((item, i) => (
+            {items.map((item, i) => (
               <AccordionItem
                 key={i}
                 value={`item-${i}`}

@@ -117,7 +117,8 @@ export function HeroSectionMetaFastTrack({
           className="max-w-4xl text-4xl font-extrabold leading-[1.1] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.3)] sm:text-5xl md:text-6xl lg:text-7xl"
         >
           <span className="block bg-gradient-to-r from-meta-purple via-meta-pink to-meta-blue bg-clip-text text-transparent [text-shadow:0_0_40px_rgba(102,65,237,0.3)] sm:text-6xl md:text-7xl lg:text-8xl">
-            Facebook Fast Track
+            <span className="block">Facebook</span>
+            <span className="block">Fast Track</span>
           </span>
           <span className="mt-3 block text-3xl font-black uppercase tracking-[0.2em] text-white sm:text-4xl md:text-5xl [text-shadow:0_2px_30px_rgba(0,0,0,0.4)]">
             Is Here

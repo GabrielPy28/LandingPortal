@@ -122,8 +122,8 @@ export function HowItWorksMetaFastTrack() {
           How It Works: Your Payout Structure
         </h2>
         <p className="mx-auto mb-14 max-w-xl text-center text-slate-400">
-          Guaranteed monthly payouts based on your audience size. Meet the
-          posting requirements and get paid.
+          Fixed monthly payouts* based on your audience size. Meet the posting
+          requirements and get paid.
         </p>
 
         {/* Payment tier cards */}

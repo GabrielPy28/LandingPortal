@@ -64,44 +64,59 @@ const JOURNEY_STEPS = [
     icon: DollarSign,
     gradient: "from-meta-purple to-meta-pink",
   },
+  {
+    number: "05",
+    phase: "Grow",
+    time: "Beyond 3 Months",
+    title: "Boosted reach & lasting community",
+    body: "Accelerate your Facebook visibility from the start and cultivate a lasting community that continues to grow beyond the program.",
+    icon: TrendingUp,
+    gradient: "from-meta-blue to-meta-purple",
+  },
 ];
 
 const BENEFITS = [
   {
     icon: DollarSign,
-    title: "Immediate access to monetization on Facebook and Instagram",
-    metric: "From Meta",
-    description: "No agencies, no ad setup, no waiting.",
-  },
-  {
-    icon: Zap,
-    title: "$1,000–$3,000/mo",
-    metric: "Guaranteed Payouts*",
-    description: "Paid monthly for 3 months. Terms apply.",
+    title: "Fast Track guaranteed payouts*",
+    metric: "$1,000–$3,000/mo",
+    description:
+      "Locked-in monthly payouts for 3 months when you meet the posting requirements.",
   },
   {
     icon: Repeat,
-    title: "Earn by Reposting",
-    metric: "Same content",
-    description: "TikTok, Shorts, Reels → Facebook.",
+    title: "Repost what you already have",
+    metric: "Same content, new revenue",
+    description:
+      "Turn your TikTok, Shorts, and Reels into Facebook Reels with zero new filming.",
   },
   {
     icon: TrendingUp,
-    title: "Ongoing Income",
-    metric: "Beyond bonuses",
-    description: "Start earning from day one from your Reels, Videos, Photos and more",
-  },
-  {
-    icon: Sparkles,
-    title: "Rewarded for Creativity",
-    metric: "Engagement matters",
-    description: "Consistency & quality pay off.",
+    title: "Boosted reach from day one",
+    metric: "More eyes on your Reels",
+    description:
+      "Meta prioritizes your content so you can find new audiences and grow faster.",
   },
   {
     icon: BarChart3,
-    title: "Transparent Metrics",
-    metric: "Creator Studio",
-    description: "Track everything in real-time.",
+    title: "Monetization unlocked",
+    metric: "Content Monetization access",
+    description:
+      "Get into Facebook Content Monetization and Reels monetization for ongoing income.",
+  },
+  {
+    icon: Sparkles,
+    title: "Built for serious creators",
+    metric: "100K+ followers",
+    description:
+      "A curated program for established creators ready to scale a new channel on Facebook.",
+  },
+  {
+    icon: Zap,
+    title: "Support from La Neta × Meta",
+    metric: "You’re not doing this alone",
+    description:
+      "Guidance from La Neta and Meta so you always know what to post and how to hit your goals.",
   },
 ];
 
@@ -111,7 +126,7 @@ const ELIGIBILITY = [
   "100K+ followers on TikTok, YouTube, or Instagram",
   "Professional Instagram + Facebook Page",
   "Content aligning with Meta's policies",
-  "No Facebook Reels posted in the last 6 months",
+  "No Facebook Video posted in the last 6 months",
   "Not enrolled in another Facebook monetization program",
 ];
 
@@ -257,7 +272,7 @@ export function MetaOpportunitySectionPart2MetaFastTrack() {
       id="meta-opportunity-benefits"
       className="scroll-mt-20 bg-meta-dark py-24 text-white"
     >
-      <div className="container mx-auto max-w-6xl px-6">
+      <div className="container mx-auto max-w-7xl px-6">
         {/* Your Journey to Monetization - Elevn-style (Fast Track only) */}
         <div
           ref={journeyHeaderRef}
@@ -278,7 +293,7 @@ export function MetaOpportunitySectionPart2MetaFastTrack() {
 
         <div
           ref={journeyStepsRef}
-          className="mx-auto mb-12 max-w-4xl space-y-4 md:max-w-5xl md:space-y-5 lg:max-w-6xl lg:mb-16 xl:max-w-[1400px]"
+          className="mx-auto mb-12 max-w-5xl space-y-4 md:max-w-6xl md:space-y-5 lg:max-w-7xl lg:mb-16 xl:max-w-[1600px]"
           style={{ perspective: "1000px" }}
         >
           {JOURNEY_STEPS.map((step, i) => (
