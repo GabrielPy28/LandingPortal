@@ -172,25 +172,31 @@ export function PageLoadAnimation({ children }: PageLoadAnimationProps) {
           />
         </div>
 
-        {/* Logo - La Neta × META (Creator Fast Track) */}
+        {/* Logo - La Neta × META (single brand line, no Meta icon) */}
         <div
           ref={logoRef}
-          className="relative z-10 flex flex-col items-center gap-5"
+          className="relative z-10 flex flex-col items-center gap-6"
         >
-          <div className="flex items-center gap-4 drop-shadow-2xl sm:gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <Image
               src="/images/new_logo.png"
               alt="La Neta"
               width={120}
               height={120}
-              className="h-auto w-24 sm:w-28 md:w-32"
+              className="h-auto w-16 sm:w-20 md:w-24"
               priority
             />
+            <span className="text-lg font-bold tracking-tight text-white sm:text-xl md:text-2xl">
+              La Neta
+            </span>
+            <span className="text-meta-blue/80 text-xl font-light sm:text-2xl">
+              ×
+            </span>
+            <span className="bg-gradient-to-r from-meta-blue via-sky-300 to-meta-blue bg-clip-text text-lg font-extrabold uppercase tracking-[0.2em] text-transparent sm:text-xl md:text-2xl">
+              META
+            </span>
           </div>
-          <p className="text-center text-lg font-medium tracking-wide text-white/90 sm:text-xl">
-            La Neta & Meta
-          </p>
-          <p className="max-w-xs text-center text-sm text-white/70">
+          <p className="max-w-xs text-center text-sm text-white/80 sm:text-base">
             Creator Fast Track for short-form creators ready to scale with La
             Neta.
           </p>

@@ -10,6 +10,9 @@ import { Shield, Users, MessageCircle, BadgeCheck } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const META_OFFICIAL_ANNOUNCEMENT_URL =
+  "https://www.facebook.com/FacebookforCreators/posts/pfbid02cZ1b5PweXBEdJhXz7XDBXSGVt1ELbkZNkSCR7vUAKeNmebbyQvk6in7AjJnboskNl";
+
 const REASONS = [
   {
     icon: Users,
@@ -160,9 +163,14 @@ export function WhyContactedSectionMetaFastTrack() {
           <div className="relative">
             <div className="mb-5 flex items-center justify-center gap-2">
               <BadgeCheck className="size-6 text-meta-purple drop-shadow-sm" />
-              <span className="rounded-full bg-meta-purple/15 px-4 py-1.5 text-sm font-semibold uppercase tracking-wider text-meta-purple">
+              <Link
+                href={META_OFFICIAL_ANNOUNCEMENT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-meta-purple/15 px-4 py-1.5 text-sm font-semibold uppercase tracking-wider text-meta-purple transition-colors hover:bg-meta-purple/25 hover:text-meta-purple"
+              >
                 Official Partner
-              </span>
+              </Link>
             </div>
             <h3
               ref={mainTextRef}
@@ -231,7 +239,7 @@ export function WhyContactedSectionMetaFastTrack() {
             </strong>{" "}
             confirms our partnership. Verify the program directly on{" "}
             <Link
-              href="https://www.facebook.com/FacebookforCreators/posts/pfbid02cZ1b5PweXBEdJhXz7XDBXSGVt1ELbkZNkSCR7vUAKeNmebbyQvk6in7AjJnboskNl"
+              href={META_OFFICIAL_ANNOUNCEMENT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-meta-purple underline decoration-meta-pink/50 underline-offset-4 transition-colors hover:text-meta-pink"

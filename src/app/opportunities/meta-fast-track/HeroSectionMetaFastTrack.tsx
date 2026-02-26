@@ -89,16 +89,24 @@ export function HeroSectionMetaFastTrack({
       >
         <div
           ref={logoRef}
-          className="mb-8 flex items-center gap-3"
+          className="mb-10 flex flex-wrap items-center justify-center gap-2 sm:gap-3"
         >
           <Image
             src="/images/new_logo.png"
             alt="La Neta Logo"
             width={80}
             height={80}
-            className="object-contain"
+            className="h-12 w-12 object-contain sm:h-14 sm:w-14"
           />
-          <span className="text-xl font-bold text-white">La Neta</span>
+          <span className="text-base font-bold text-white sm:text-lg">
+            La Neta
+          </span>
+          <span className="text-meta-blue/80 text-lg font-light sm:text-xl">
+            ×
+          </span>
+          <span className="bg-gradient-to-r from-meta-blue via-sky-300 to-meta-blue bg-clip-text text-base font-extrabold uppercase tracking-[0.15em] text-transparent sm:text-lg">
+            META
+          </span>
         </div>
 
         <div

@@ -20,6 +20,7 @@ import {
   ClipboardList,
   Clock,
   Settings,
+  ArrowRight,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -342,26 +343,18 @@ export function MetaOpportunitySectionPart2MetaFastTrack() {
           />
         </div>
 
-        <div
-          ref={journeyCtaRef}
-          className="mb-20 flex flex-col items-center gap-4 text-center"
-        >
-          <Button
-            asChild
-            size="lg"
-            className="w-full max-w-sm bg-gradient-to-r from-meta-purple to-meta-pink px-8 py-6 text-base font-semibold shadow-[0_4px_24px_rgba(102,65,237,0.3)] transition hover:opacity-95 sm:w-auto"
-          >
+        <div ref={journeyCtaRef} className="mb-20 text-center">
+          <p className="text-slate-400">
+            Next step:{" "}
             <Link
               href={META_APPLY_URL}
               target="_blank"
               rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-medium text-meta-pink transition-colors hover:text-white"
             >
-              Apply to the Program
+              Start your application
+              <ArrowRight className="size-4" />
             </Link>
-          </Button>
-          <p className="max-w-xs text-sm text-slate-500">
-            Join the program to get access. Applications are completed directly
-            on Facebook.
           </p>
         </div>
 
