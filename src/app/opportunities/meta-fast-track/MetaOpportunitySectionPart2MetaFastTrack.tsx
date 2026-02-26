@@ -69,7 +69,7 @@ const JOURNEY_STEPS = [
     number: "05",
     phase: "Grow",
     time: "Beyond 3 Months",
-    title: "Boosted reach & lasting community",
+    title: "Increased reach & lasting community",
     body: "Accelerate your Facebook visibility from the start and cultivate a lasting community that continues to grow beyond the program.",
     icon: TrendingUp,
     gradient: "from-meta-blue to-meta-purple",
@@ -93,7 +93,7 @@ const BENEFITS = [
   },
   {
     icon: TrendingUp,
-    title: "Boosted reach from day one",
+    title: "Increased reach from day one",
     metric: "More eyes on your Reels",
     description:
       "Meta prioritizes your content so you can find new audiences and grow faster.",

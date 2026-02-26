@@ -124,7 +124,7 @@ export function MetaOpportunitySectionPart1MetaFastTrack() {
                 What you&apos;re actually building:
               </strong>{" "}
               A sustainable community on Facebook from day one. Creator Fast Track
-              gives you boosted visibility so your Reels actually get seen,
+              gives you increased visibility so your Reels actually get seen,
               guaranteed monthly payouts* of $1,000–$3,000 so you&apos;re earning
               while you grow, and immediate access to Facebook Content
               Monetization for long-term revenue. This isn&apos;t a one-time

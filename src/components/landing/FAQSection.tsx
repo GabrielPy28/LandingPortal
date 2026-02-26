@@ -75,7 +75,7 @@ const FAST_TRACK_FAQ_PREPEND = [
     ),
   },
   {
-    q: "What exactly does 'boosted visibility' mean within this program?",
+    q: "What exactly does 'increased visibility' mean within this program?",
     a: (
       <>
         As a Fast Track participant, Meta prioritizes your content with

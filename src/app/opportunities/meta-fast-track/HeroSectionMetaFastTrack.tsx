@@ -137,7 +137,7 @@ export function HeroSectionMetaFastTrack({
           <span className="font-semibold text-white">
             Guaranteed monthly payouts* of $1,000–$3,000
           </span>
-          , boosted reach to build a real audience on Facebook, and zero need
+          , increased reach to build a real audience on Facebook, and zero need
           for new content—just repost what you&apos;ve already made.{" "}
           <span className="font-medium text-meta-pink/90">
             It&apos;s time to fast-track your growth on Facebook.
