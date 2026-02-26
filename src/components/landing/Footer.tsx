@@ -102,8 +102,9 @@ export function Footer({ programTitle, navLinks, termsHref }: FooterProps) {
               <li>
                 <Link
                   href={termsHref ?? "https://www.laneta.com/terms-conditions-creator-program"}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(termsHref?.startsWith("/")
+                    ? {}
+                    : { target: "_blank", rel: "noopener noreferrer" })}
                   className="text-slate-400 hover:text-meta-pink"
                 >
                   Terms & Conditions

@@ -47,7 +47,7 @@ export function MetaFastTrackOpportunityContent() {
         <Footer
           programTitle="Creator Fast Track"
           navLinks={FAST_TRACK_NAV_LINKS}
-          termsHref="https://creators.facebook.com/creator-fast-track"
+          termsHref="/opportunities/meta-fast-track/terms"
         />
       </main>
       <ConnectOpportunitiesModal
