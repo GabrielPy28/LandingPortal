@@ -81,7 +81,7 @@ export function MetaOpportunitySectionPart1MetaFastTrack() {
           ref={titleRef}
           className="mb-4 text-center text-3xl font-bold sm:text-4xl md:text-5xl"
         >
-          Meta Fast Track Creator Program
+          Creator Fast Track
         </h2>
         <p className="mx-auto mb-6 max-w-2xl text-center text-lg text-slate-400">
           Your shortcut to monetization on Facebook — no new content required
@@ -111,7 +111,7 @@ export function MetaOpportunitySectionPart1MetaFastTrack() {
           </h3>
           <div className="space-y-6 text-slate-200">
             <p className="text-lg leading-relaxed">
-              Facebook Fast Track wasn&apos;t built in a boardroom—it was built
+              Creator Fast Track wasn&apos;t built in a boardroom—it was built
               from the feedback of thousands of creators who told Meta exactly
               what they needed: a real path to growing on Facebook without
               starting from scratch. The result is the most streamlined creator
@@ -123,18 +123,19 @@ export function MetaOpportunitySectionPart1MetaFastTrack() {
               <strong className="text-white">
                 What you&apos;re actually building:
               </strong>{" "}
-              A sustainable community on Facebook from day one. Fast Track gives
-              you boosted visibility so your Reels actually get seen, guaranteed
-              monthly payouts* of $1,000–$3,000 so you&apos;re earning while you
-              grow, and immediate access to Facebook Content Monetization for
-              long-term revenue. This isn&apos;t a one-time bonus—it&apos;s the
-              foundation of a second revenue stream that compounds over time.
+              A sustainable community on Facebook from day one. Creator Fast Track
+              gives you boosted visibility so your Reels actually get seen,
+              guaranteed monthly payouts* of $1,000–$3,000 so you&apos;re earning
+              while you grow, and immediate access to Facebook Content
+              Monetization for long-term revenue. This isn&apos;t a one-time
+              bonus—it&apos;s the foundation of a second revenue stream that
+              compounds over time.
             </p>
             <p className="text-lg leading-relaxed">
               No brand deals to negotiate. No middlemen taking a cut. Meta pays
               you directly for doing what you&apos;re already doing—creating.
-              Fast Track is the shortest distance between your content and
-              consistent income on Facebook.
+              Creator Fast Track is the shortest distance between your content
+              and consistent income on Facebook.
             </p>
 
             <div className="rounded-xl border border-meta-pink/30 bg-meta-pink/5 py-5 pl-5 pr-6">
@@ -157,7 +158,16 @@ export function MetaOpportunitySectionPart1MetaFastTrack() {
               requirements: 15 original or reposted videos published as Facebook
               Reels, distributed across a minimum of 10 distinct calendar days
               per month. Payout tier is determined by follower count at time of
-              acceptance. Full terms available at application.
+              acceptance.{" "}
+              <a
+                href="https://creators.facebook.com/creator-fast-track"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-meta-pink underline decoration-meta-pink/50 underline-offset-2 hover:text-meta-pink/90"
+              >
+                Full terms
+              </a>{" "}
+              available at application.
             </p>
           </div>
         </div>

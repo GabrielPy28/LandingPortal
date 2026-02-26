@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { Button } from "@/components/ui/button";
-import { FaMeta } from "react-icons/fa6";
 import { Play, Sparkles } from "lucide-react";
 
 const META_APPLY_URL =
@@ -100,8 +99,6 @@ export function HeroSectionMetaFastTrack({
             className="object-contain"
           />
           <span className="text-xl font-bold text-white">La Neta</span>
-          <span className="text-2xl font-bold text-white">×</span>
-          <FaMeta className="size-16 text-meta-blue sm:size-20" aria-hidden />
         </div>
 
         <div
@@ -117,8 +114,7 @@ export function HeroSectionMetaFastTrack({
           className="max-w-4xl text-4xl font-extrabold leading-[1.1] text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.3)] sm:text-5xl md:text-6xl lg:text-7xl"
         >
           <span className="block bg-gradient-to-r from-meta-purple via-meta-pink to-meta-blue bg-clip-text text-transparent [text-shadow:0_0_40px_rgba(102,65,237,0.3)] sm:text-6xl md:text-7xl lg:text-8xl">
-            <span className="block">Facebook</span>
-            <span className="block">Fast Track</span>
+            Creator Fast Track
           </span>
           <span className="mt-3 block text-3xl font-black uppercase tracking-[0.2em] text-white sm:text-4xl md:text-5xl [text-shadow:0_2px_30px_rgba(0,0,0,0.4)]">
             Is Here
@@ -183,7 +179,16 @@ export function HeroSectionMetaFastTrack({
             requirements: 15 original or reposted videos published as Facebook
             Reels, distributed across a minimum of 10 distinct calendar days per
             month. Payout tier is determined by follower count at time of
-            acceptance. Full terms available at application.
+            acceptance.{" "}
+            <a
+              href="https://creators.facebook.com/creator-fast-track"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-meta-pink underline decoration-meta-pink/50 underline-offset-2 hover:text-meta-pink/90"
+            >
+              Full terms
+            </a>{" "}
+            available at application.
           </p>
         </div>
       </div>

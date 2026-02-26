@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import gsap from "gsap";
-import { FaMeta } from "react-icons/fa6";
 import { FaPinterestP } from "react-icons/fa";
 import { SiTubi } from "react-icons/si";
 import { ChevronRight, Zap } from "lucide-react";
@@ -81,7 +80,13 @@ function OpportunityIcon({
     case "meta":
       return (
         <div className={getContainerClass()}>
-          <FaMeta className={isCompact ? "size-5 text-white" : iconClass} />
+          <span
+            className={`font-bold tracking-tight ${
+              isCompact ? "text-[10px]" : "text-xs"
+            } ${active ? "text-white" : "text-slate-300"}`}
+          >
+            META
+          </span>
         </div>
       );
     case "air-media":

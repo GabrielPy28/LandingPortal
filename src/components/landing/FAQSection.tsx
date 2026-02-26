@@ -282,7 +282,7 @@ export function FAQSection({
       : FAQ_ITEMS;
   const subtitle =
     program === "fast-track"
-      ? "Everything you need to know about the Meta Fast Track Creator Program"
+      ? "Everything you need to know about Creator Fast Track"
       : "Everything you need to know about the Meta Breakthrough Bonus Program";
 
   useEffect(() => {

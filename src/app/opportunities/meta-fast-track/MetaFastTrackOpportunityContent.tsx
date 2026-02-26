@@ -42,11 +42,12 @@ export function MetaFastTrackOpportunityContent() {
         <HowItWorksMetaFastTrack />
         <MetaOpportunitySectionPart2MetaFastTrack />
         <FAQSection program="fast-track" />
-        <ContactForm />
+        <ContactForm subject="Creator Fast Track" />
         <LaNetaSection />
         <Footer
-          programTitle="Meta Fast Track Creator Program"
+          programTitle="Creator Fast Track"
           navLinks={FAST_TRACK_NAV_LINKS}
+          termsHref="https://creators.facebook.com/creator-fast-track"
         />
       </main>
       <ConnectOpportunitiesModal

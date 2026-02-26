@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaMeta } from "react-icons/fa6";
 import { SiTubi } from "react-icons/si";
 import { ArrowRight } from "lucide-react";
 
 const OPPORTUNITIES = [
   {
     id: "meta-fast-track",
-    name: "Meta Fast Track Creator Program",
+    name: "Creator Fast Track",
     href: "/opportunities/meta-fast-track",
     description:
       "Earn $1,000–$3,000/mo in guaranteed payouts by reposting your content to Facebook.",
@@ -52,7 +51,11 @@ const OPPORTUNITIES = [
 function OpportunityIcon({ icon }: { icon: string }) {
   switch (icon) {
     case "meta":
-      return <FaMeta className="size-8 text-white" />;
+      return (
+        <span className="text-lg font-bold tracking-tight text-white sm:text-xl">
+          META
+        </span>
+      );
     case "air-media":
       return (
         <Image

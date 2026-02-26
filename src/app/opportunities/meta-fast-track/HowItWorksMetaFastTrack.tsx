@@ -195,7 +195,16 @@ export function HowItWorksMetaFastTrack() {
           requirements: 15 original or reposted videos published as Facebook
           Reels, distributed across a minimum of 10 distinct calendar days per
           month. Payout tier is determined by follower count at time of
-          acceptance. Full terms available at application.
+          acceptance.{" "}
+          <a
+            href="https://creators.facebook.com/creator-fast-track"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-meta-pink underline decoration-meta-pink/50 underline-offset-2 hover:text-meta-pink/90"
+          >
+            Full terms
+          </a>{" "}
+          available at application.
         </p>
 
         <p className="mt-10 text-center text-slate-400">

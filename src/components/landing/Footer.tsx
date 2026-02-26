@@ -7,9 +7,11 @@ import { Facebook, Instagram, Linkedin } from "lucide-react";
 interface FooterProps {
   programTitle?: string;
   navLinks?: { href: string; label: string }[];
+  /** When provided (e.g. for Creator Fast Track), Terms & Conditions link points here instead of default. */
+  termsHref?: string;
 }
 
-export function Footer({ programTitle, navLinks }: FooterProps) {
+export function Footer({ programTitle, navLinks, termsHref }: FooterProps) {
   return (
     <footer className="border-t border-slate-200 bg-meta-dark text-white">
       <div className="container mx-auto max-w-6xl px-6 py-16">
@@ -99,7 +101,7 @@ export function Footer({ programTitle, navLinks }: FooterProps) {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="https://www.laneta.com/terms-conditions-creator-program"
+                  href={termsHref ?? "https://www.laneta.com/terms-conditions-creator-program"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-400 hover:text-meta-pink"

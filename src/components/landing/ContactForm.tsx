@@ -20,16 +20,20 @@ interface FormData {
   message: string;
 }
 
-const initialFormData: FormData = {
-  fullName: "",
-  email: "",
-  phone: "",
-  mainAccountUrl: "",
-  subject: META_OPPORTUNITY_SUBJECT,
-  message: "",
-};
+interface ContactFormProps {
+  /** Override the read-only subject line (e.g. "Creator Fast Track" for the fast-track page). */
+  subject?: string;
+}
 
-export function ContactForm() {
+export function ContactForm({ subject: subjectProp }: ContactFormProps = {}) {
+  const initialFormData: FormData = {
+    fullName: "",
+    email: "",
+    phone: "",
+    mainAccountUrl: "",
+    subject: subjectProp ?? META_OPPORTUNITY_SUBJECT,
+    message: "",
+  };
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle"

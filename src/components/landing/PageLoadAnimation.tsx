@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { FaMeta } from "react-icons/fa6";
 
 interface PageLoadAnimationProps {
   children: React.ReactNode;
@@ -173,7 +172,7 @@ export function PageLoadAnimation({ children }: PageLoadAnimationProps) {
           />
         </div>
 
-        {/* Logo - La Neta × Meta (Fast Track) */}
+        {/* Logo - La Neta × META (Creator Fast Track) */}
         <div
           ref={logoRef}
           className="relative z-10 flex flex-col items-center gap-5"
@@ -187,17 +186,13 @@ export function PageLoadAnimation({ children }: PageLoadAnimationProps) {
               className="h-auto w-24 sm:w-28 md:w-32"
               priority
             />
-            <span className="text-3xl font-bold text-white sm:text-4xl">
-              ×
-            </span>
-            <FaMeta className="size-14 text-meta-blue sm:size-16 md:size-20" />
           </div>
           <p className="text-center text-lg font-medium tracking-wide text-white/90 sm:text-xl">
             La Neta & Meta
           </p>
           <p className="max-w-xs text-center text-sm text-white/70">
-            Meta Fast Track Creator Program for short-form creators ready to
-            scale with La Neta.
+            Creator Fast Track for short-form creators ready to scale with La
+            Neta.
           </p>
         </div>
       </div>

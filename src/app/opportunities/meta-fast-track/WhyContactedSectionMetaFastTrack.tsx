@@ -172,8 +172,8 @@ export function WhyContactedSectionMetaFastTrack() {
               <span className="bg-gradient-to-r from-meta-purple to-meta-pink bg-clip-text text-transparent">
                 META&apos;s Official Partner
               </span>
-              <br className="hidden sm:block" /> in connecting creators with the
-              Fast Track Creator Program
+              <br className="hidden sm:block" /> in connecting creators with
+              Creator Fast Track
             </h3>
             <p className="mx-auto max-w-3xl text-center text-lg leading-relaxed text-slate-600">
               Meta works with a select group of partner agencies to discover,
