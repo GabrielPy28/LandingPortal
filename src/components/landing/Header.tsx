@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const META_APPLY_URL =
   "https://www.facebook.com/creator_programs/signup?referral_code=laneta";
+const LA_NETA_INSTAGRAM_URL = "https://www.instagram.com/lanetasiempre/";
 
 export const DEFAULT_NAV_LINKS = [
   { href: "#meta-opportunity", label: "Program" },
@@ -131,18 +132,30 @@ export function Header({
         </Link>
 
         <nav className="hidden items-center gap-6 min-[986px]:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                activeHash === link.href
-                  ? "text-meta-pink"
-                  : "text-slate-300 hover:text-white"
-              }`}
-            >
-              {link.label}
-            </a>
+          {navLinks.map((link, index) => (
+            <span key={link.href} className="flex items-center gap-2">
+              {index === 0 && (
+                <a
+                  href={LA_NETA_INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex size-9 items-center justify-center rounded-lg text-pink-300 transition-colors hover:text-pink-200"
+                  aria-label="La Neta on Instagram"
+                >
+                  <Instagram className="size-5" />
+                </a>
+              )}
+              <a
+                href={link.href}
+                className={`text-sm font-medium transition-colors ${
+                  activeHash === link.href
+                    ? "text-meta-pink"
+                    : "text-slate-300 hover:text-white"
+                }`}
+              >
+                {link.label}
+              </a>
+            </span>
           ))}
           {onOpenConnectModal && (
             <Button
@@ -182,19 +195,32 @@ export function Header({
       {isMobileMenuOpen && (
         <div className="border-t border-slate-700 bg-meta-dark/98 px-6 py-4 min-[986px]:hidden">
           <nav className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium transition-colors ${
-                  activeHash === link.href
-                    ? "text-meta-pink"
-                    : "text-slate-300 hover:text-white"
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </a>
+            {navLinks.map((link, index) => (
+              <span key={link.href} className="flex items-center gap-2">
+                {index === 0 && (
+                  <a
+                    href={LA_NETA_INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex size-9 shrink-0 items-center justify-center rounded-lg text-pink-300 transition-colors hover:text-pink-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    aria-label="La Neta on Instagram"
+                  >
+                    <Instagram className="size-5" />
+                  </a>
+                )}
+                <a
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors ${
+                    activeHash === link.href
+                      ? "text-meta-pink"
+                      : "text-slate-300 hover:text-white"
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              </span>
             ))}
             {onOpenConnectModal && (
               <Button
