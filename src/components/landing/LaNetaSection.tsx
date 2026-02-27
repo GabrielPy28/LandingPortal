@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -163,6 +165,19 @@ export function LaNetaSection() {
                 </li>
               ))}
             </ul>
+
+            <p className="mt-8 text-slate-600">
+              Join the community —{" "}
+              <Link
+                href="https://www.laneta.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-medium text-meta-pink transition-colors hover:text-meta-purple"
+              >
+                Visit La Neta
+                <ArrowRight className="size-4" />
+              </Link>
+            </p>
           </div>
         </div>
       </div>

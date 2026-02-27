@@ -17,13 +17,20 @@ export function Footer({ programTitle, navLinks, termsHref }: FooterProps) {
       <div className="container mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col gap-4">
-            <Image
-              src="/images/new_logo.png"
-              alt="La Neta"
-              width={60}
-              height={60}
-            />
-            <p className="text-sm text-slate-400">La Neta</p>
+            <Link
+              href="https://www.laneta.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col gap-1 transition-opacity hover:opacity-90"
+            >
+              <Image
+                src="/images/new_logo.png"
+                alt="La Neta"
+                width={60}
+                height={60}
+              />
+              <p className="text-sm text-slate-400">La Neta</p>
+            </Link>
             <p className="text-sm text-slate-400">
               174 Nassau Street, Princeton, NJ 08542 USA
             </p>
