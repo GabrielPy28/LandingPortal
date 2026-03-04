@@ -126,20 +126,23 @@ export function HeroSection({ onOpenConnectModal }: HeroSectionProps) {
             Exclusive Creator Opportunity
           </div>
           {daysRemaining !== null && (
-            <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-3 py-1 text-xs font-medium text-yellow-200">
+            <Link
+              href="/opportunities/meta-fast-track"
+              className="inline-flex items-center gap-2 rounded-full border border-yellow-400/60 bg-yellow-400/15 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-yellow-200 transition-colors hover:border-yellow-400/80 hover:bg-yellow-400/25 hover:text-yellow-100"
+            >
               <AlertTriangle className="size-3.5" />
               {daysRemaining > 0 ? (
                 <span>
-                  This opportunity will be available for{" "}
+                  Limited-time access: only{" "}
                   <span className="font-semibold">
                     {daysRemaining} {daysRemaining === 1 ? "day" : "days"}
                   </span>
-                  .
+                  {" "}left to apply.
                 </span>
               ) : (
                 <span>This opportunity is scheduled to close.</span>
               )}
-            </div>
+            </Link>
           )}
         </div>
 
@@ -167,12 +170,7 @@ export function HeroSection({ onOpenConnectModal }: HeroSectionProps) {
             size="lg"
             className="bg-meta-purple px-8 py-6 text-lg font-semibold hover:bg-meta-purple/90"
           >
-            <Link
-              href={META_APPLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2"
-            >
+            <Link href="/opportunities/meta-fast-track" className="flex items-center gap-2">
               Try it
               <Play className="size-5" />
             </Link>
