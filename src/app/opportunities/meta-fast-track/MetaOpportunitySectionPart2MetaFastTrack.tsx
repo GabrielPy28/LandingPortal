@@ -466,37 +466,61 @@ export function MetaOpportunitySectionPart2MetaFastTrack() {
           </div>
         </div>
 
-        {/* QR Code Modal */}
+        {/* QR Code Modal - tech / premium */}
         {showQrModal && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md"
             onClick={() => setShowQrModal(false)}
           >
             <div
-              className="relative rounded-2xl border-2 border-white/20 bg-meta-dark p-6 shadow-2xl"
+              className="modal-enter relative w-full max-w-md overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900/90 to-slate-950/90 p-8 shadow-[0_0_40px_rgba(0,255,255,0.15)] backdrop-blur-xl"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* glow background */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-40 animate-[pulse_3s_ease-in-out_infinite]"
+                aria-hidden
+              >
+                <div className="absolute -top-20 left-1/2 h-60 w-60 -translate-x-1/2 rounded-full bg-cyan-500 blur-[120px]" />
+              </div>
+
               <button
                 onClick={() => setShowQrModal(false)}
-                className="absolute right-4 top-4 rounded-full p-1 text-slate-400 transition-colors hover:bg-white/10 hover:text-white"
+                className="absolute right-3 top-3 z-10 rounded-full p-2 text-slate-400 transition-all hover:bg-white/10 hover:text-white"
                 aria-label="Close"
               >
                 <X className="size-5" />
               </button>
-              <div className="flex flex-col items-center gap-4 pt-2">
-                <p className="text-center font-semibold text-white">
-                  Scan to apply
-                </p>
-                <div className="rounded-xl border-4 border-white bg-white p-4">
+
+              <div className="relative flex flex-col items-center gap-6">
+                <div className="space-y-1 text-center">
+                  <h2 className="text-xl font-semibold tracking-wide text-white">
+                    Scan to Apply
+                  </h2>
+                  <p className="text-sm text-slate-400">
+                    Open your phone camera and scan the code
+                  </p>
+                </div>
+
+                {/* QR container with HUD corners */}
+                <div className="relative rounded-2xl border border-cyan-400/40 bg-black/40 p-6 shadow-[0_0_25px_rgba(34,211,238,0.25)]">
+                  <div className="absolute inset-0 rounded-2xl bg-cyan-400/10 blur-xl" aria-hidden />
+                  {/* scan corners */}
+                  <span className="absolute left-3 top-3 h-6 w-6 border-l-2 border-t-2 border-cyan-400/60" />
+                  <span className="absolute right-3 top-3 h-6 w-6 border-r-2 border-t-2 border-cyan-400/60" />
+                  <span className="absolute bottom-3 left-3 h-6 w-6 border-b-2 border-l-2 border-cyan-400/60" />
+                  <span className="absolute bottom-3 right-3 h-6 w-6 border-b-2 border-r-2 border-cyan-400/60" />
                   <Image
                     src="/images/QRCode.png"
                     alt="Scan to apply - Creator Fast Track"
-                    width={220}
-                    height={220}
-                    className="size-52 object-contain sm:size-64"
+                    width={320}
+                    height={320}
+                    className="relative size-80 object-contain sm:size-96 [background:transparent]"
+                    priority
                   />
                 </div>
-                <p className="text-center text-sm text-slate-400">
+
+                <p className="max-w-xs text-center text-xs leading-relaxed text-slate-500">
                   *Guaranteed payouts require meeting monthly posting
                   requirements. Terms apply.
                 </p>
